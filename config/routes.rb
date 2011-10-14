@@ -1,4 +1,17 @@
 Lab34::Application.routes.draw do
+
+  get 'login' => "sessions#new", :as => 'login'
+  post 'login' => "sessions#create"
+  get 'logout' => "sessions#destroy", :as => 'logout'
+
+  
+  get "sign_up" => "users#new", :as => "sign_up"
+  root :to => "users#new"
+  resources :whats
+
+  resources :users
+
+  resources :sessions
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +61,7 @@ Lab34::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  # root :to => 'login'
 
   # See how all your routes lay out with "rake routes"
 
