@@ -22,9 +22,6 @@ group :production do
   gem 'pg'
 end
 
-
-gem 'therubyracer'
-
 gem 'jquery-rails'
 
 # Use unicorn as the web server
