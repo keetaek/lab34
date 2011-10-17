@@ -5,7 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', :group => :development
+#gem 'sqlite3', :group => :development
 
 
 # Gems used only for assets and not required
@@ -17,10 +17,8 @@ group :assets do
 end
 
 # gemfile
-group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
-  gem 'pg'
-end
+gem 'pg'
+
 
 gem 'jquery-rails'
 
