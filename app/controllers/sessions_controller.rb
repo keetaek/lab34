@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  skip_before_filter :authorize
   # GET /sessions/new
   # GET /sessions/new.json
   def new

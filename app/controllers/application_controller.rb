@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
+  before_filter :authorize
   protect_from_forgery
   force_ssl
+
+  protected
+    def authorize
+      unless current_user
+        redirect_to login_path, :notice => "Please log in"
+      end
+    end
 
   private
   
