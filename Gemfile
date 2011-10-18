@@ -17,8 +17,10 @@ group :assets do
 end
 
 # gemfile
+#http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development
 gem 'pg'
 
+gem 'panda', '1.4.2'
 
 gem 'jquery-rails'
 
