@@ -1,5 +1,7 @@
 Lab34::Application.routes.draw do
 
+  resources :videos
+
   get 'login' => "sessions#new", :as => 'login'
   post 'login' => "sessions#create"
   get 'logout' => "sessions#destroy", :as => 'logout'
