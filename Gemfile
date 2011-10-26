@@ -9,6 +9,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'execjs'
   gem 'therubyracer'
+  gem 'ruby-debug19'
 end
 
 # Gems used only for assets and not required
@@ -23,7 +24,7 @@ end
 #http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development
 gem 'pg', :group => :production
 
-gem 'panda', '1.4.2'
+gem 'panda', '1.5.0'
 
 gem 'jquery-rails'
 

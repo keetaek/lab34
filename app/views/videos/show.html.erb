@@ -12,8 +12,9 @@
   <video id="movie" width="320" height="240" preload="none" 
     poster="<%= @h264_encoding.screenshots.first %>" controls>
     <source src="<%= @h264_encoding.url %>" type="video/mp4">
+    <source src="<%= @ogg_encoding.url %>" type="video/ogg">
   </video>
-  
+ 
   <!-- Flash player -->
   <div id='flash_player'>Flash player will appear here</div>
 

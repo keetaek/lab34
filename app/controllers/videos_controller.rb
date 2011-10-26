@@ -13,6 +13,8 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     @panda_video = @video.panda_video
     @h264_encoding = find_h264_encoding(@panda_video)
+    @ogg_encoding = find_ogg_encoding(@panda_video)
+
   end
   
   def new
@@ -33,5 +35,11 @@ class VideosController < ApplicationController
     end
     video.encodings.find_by_profile_name(name)
   end
-
+  
+  def find_ogg_encoding(video)
+    name = %w{ogg.hi ogg ogg.lo}.find do |name|
+      video.encodings.find_by_profile_name(name)
+    end
+    video.encodings.find_by_profile_name(name)
+  end
 end
