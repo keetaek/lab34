@@ -8,14 +8,34 @@
 
 <% if @video.panda_video.status == "success" %>
   
-  <!-- HTML5 player -->
+  <!-- HTML5 player 
   <video id="movie" width="320" height="240" preload="none" 
     poster="<%= @h264_encoding.screenshots.first %>" controls>
     <source src="<%= @h264_encoding.url %>" type="video/mp4">
     <source src="<%= @ogg_encoding.url %>" type="video/ogg">
   </video>
+ -->
  
-  <!-- Flash player -->
+  <div id="container">Loading the player...</div>
+  
+  <script type="text/javascript">
+  jwplayer("container").setup({
+    height: 270,
+    width: 480,
+    image: "<%= @h264_encoding.screenshots.first %>",
+    levels: [
+      { file: "<%= @h264_encoding.url %>" }
+    ],
+    modes: [
+      { type: "html5" },
+      { type: "flash", src: "/jwplayer/player.swf" },
+      { type: "download" }
+    ]
+  });
+  </script>
+
+ 
+  <!-- Flash player 
   <div id='flash_player'>Flash player will appear here</div>
 
   <script type='text/javascript'>
@@ -27,5 +47,5 @@
     so.addVariable('image','<%= @h264_encoding.screenshots.first %>');
     so.write('flash_player');
   </script>
-  
+  -->
 <% end %>
