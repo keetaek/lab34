@@ -1,5 +1,25 @@
 Lab34::Application.routes.draw do
 
+  resources :user_details
+
+  resources :audition_admins
+
+  resources :application_reviews
+
+  resources :application_question_answers
+
+  resources :role_questions
+
+  resources :media
+
+  resources :application_media
+
+  resources :applications
+
+  resources :roles
+
+  resources :auditions
+
   resources :videos
 
   get 'login' => "sessions#new", :as => 'login'

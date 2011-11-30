@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Summary:</b>
+  <%= @user_detail.summary %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user_detail.phone %>
+</p>
+
+<p>
+  <b>View count:</b>
+  <%= @user_detail.view_count %>
+</p>
+
+<p>
+  <b>Thumbnail:</b>
+  <%= @user_detail.thumbnail %>
+</p>
+
+<p>
+  <b>Website1:</b>
+  <%= @user_detail.website1 %>
+</p>
+
+<p>
+  <b>Website2:</b>
+  <%= @user_detail.website2 %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_detail_path(@user_detail) %> |
+<%= link_to 'Back', user_details_path %>

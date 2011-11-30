@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  summary: MyText
+  phone: MyString
+  view_count: 1
+  thumbnail: MyString
+  website1: MyString
+  website2: MyString
+
+two:
+  summary: MyText
+  phone: MyString
+  view_count: 1
+  thumbnail: MyString
+  website1: MyString
+  website2: MyString

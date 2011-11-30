@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  score: 1
+  comment: MyText
+  application_id: 1
+  audition_admin_id: 1
+
+two:
+  score: 1
+  comment: MyText
+  application_id: 1
+  audition_admin_id: 1

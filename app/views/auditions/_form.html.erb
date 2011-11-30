@@ -1,0 +1,53 @@
+<%= form_for(@audition) do |f| %>
+  <% if @audition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@audition.errors.count, "error") %> prohibited this audition from being saved:</h2>
+
+      <ul>
+      <% @audition.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :logo %><br />
+    <%= f.text_field :logo %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :expiration_date %><br />
+    <%= f.datetime_select :expiration_date %>
+  </div>
+  <div class="field">
+    <%= f.label :job_start_date %><br />
+    <%= f.date_select :job_start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :job_end_date %><br />
+    <%= f.date_select :job_end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

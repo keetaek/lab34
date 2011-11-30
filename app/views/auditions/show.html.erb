@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @audition.title %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @audition.type %>
+</p>
+
+<p>
+  <b>Logo:</b>
+  <%= @audition.logo %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @audition.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @audition.status %>
+</p>
+
+<p>
+  <b>Expiration date:</b>
+  <%= @audition.expiration_date %>
+</p>
+
+<p>
+  <b>Job start date:</b>
+  <%= @audition.job_start_date %>
+</p>
+
+<p>
+  <b>Job end date:</b>
+  <%= @audition.job_end_date %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @audition.zip %>
+</p>
+
+
+<%= link_to 'Edit', edit_audition_path(@audition) %> |
+<%= link_to 'Back', auditions_path %>

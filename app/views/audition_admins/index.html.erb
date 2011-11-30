@@ -1,0 +1,25 @@
+<h1>Listing audition_admins</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Audition</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @audition_admins.each do |audition_admin| %>
+  <tr>
+    <td><%= audition_admin.user_id %></td>
+    <td><%= audition_admin.audition_id %></td>
+    <td><%= link_to 'Show', audition_admin %></td>
+    <td><%= link_to 'Edit', edit_audition_admin_path(audition_admin) %></td>
+    <td><%= link_to 'Destroy', audition_admin, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Audition admin', new_audition_admin_path %>

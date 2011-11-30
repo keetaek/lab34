@@ -1,4 +1,6 @@
 class Video < ActiveRecord::Base
+  extend MediaResource
+  acts_as_media
   #Panda also provides a Panda::Video, but we wrap it in our own ActiveRecord
   #class in order to get local storage, and so that we can add our own
   #associations and metadata.

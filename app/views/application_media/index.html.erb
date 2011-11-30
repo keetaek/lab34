@@ -1,0 +1,21 @@
+<h1>Listing application_media</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @application_media.each do |application_medium| %>
+  <tr>
+    <td><%= link_to 'Show', application_medium %></td>
+    <td><%= link_to 'Edit', edit_application_medium_path(application_medium) %></td>
+    <td><%= link_to 'Destroy', application_medium, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Application medium', new_application_medium_path %>

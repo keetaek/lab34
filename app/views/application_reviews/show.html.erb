@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Score:</b>
+  <%= @application_review.score %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @application_review.comment %>
+</p>
+
+<p>
+  <b>Application:</b>
+  <%= @application_review.application_id %>
+</p>
+
+<p>
+  <b>Audition admin:</b>
+  <%= @application_review.audition_admin_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_application_review_path(@application_review) %> |
+<%= link_to 'Back', application_reviews_path %>

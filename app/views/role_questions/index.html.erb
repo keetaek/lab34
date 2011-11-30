@@ -1,0 +1,23 @@
+<h1>Listing role_questions</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @role_questions.each do |role_question| %>
+  <tr>
+    <td><%= role_question.question %></td>
+    <td><%= link_to 'Show', role_question %></td>
+    <td><%= link_to 'Edit', edit_role_question_path(role_question) %></td>
+    <td><%= link_to 'Destroy', role_question, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Role question', new_role_question_path %>

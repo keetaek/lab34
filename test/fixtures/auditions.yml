@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  type: 
+  logo: MyString
+  description: MyText
+  status: MyString
+  expiration_date: 2011-11-05 17:19:24
+  job_start_date: 2011-11-05
+  job_end_date: 2011-11-05
+  zip: MyString
+
+two:
+  title: MyString
+  type: 
+  logo: MyString
+  description: MyText
+  status: MyString
+  expiration_date: 2011-11-05 17:19:24
+  job_start_date: 2011-11-05
+  job_end_date: 2011-11-05
+  zip: MyString

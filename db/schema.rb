@@ -11,19 +11,112 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018034555) do
+ActiveRecord::Schema.define(:version => 20111128063225) do
+
+  create_table "application_question_answers", :force => true do |t|
+    t.text     "answer"
+    t.integer  "application_id"
+    t.integer  "role_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "application_reviews", :force => true do |t|
+    t.integer  "score"
+    t.text     "comment"
+    t.integer  "application_id"
+    t.integer  "audition_admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "applications", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "applications_medium", :id => false, :force => true do |t|
+    t.integer "application_id"
+    t.integer "media_id"
+  end
+
+  create_table "audition_admins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "audition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "auditions", :force => true do |t|
+    t.string   "title"
+    t.string   "type"
+    t.string   "logo"
+    t.text     "description"
+    t.string   "status"
+    t.datetime "expiration_date"
+    t.date     "job_start_date"
+    t.date     "job_end_date"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "auditions_users", :id => false, :force => true do |t|
+    t.integer "audition_id"
+    t.integer "user_id"
+  end
+
+  create_table "media", :force => true do |t|
+    t.string   "title"
+    t.boolean  "private"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "media_resource_id"
+    t.string   "media_resource_type"
+  end
+
+  create_table "role_questions", :force => true do |t|
+    t.string   "question"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "attachment"
+    t.integer  "audition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_details", :force => true do |t|
+    t.text     "summary"
+    t.string   "phone"
+    t.integer  "view_count"
+    t.string   "thumbnail"
+    t.string   "website1"
+    t.string   "website2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
     t.string   "firstName"
     t.string   "lastName"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "videos", :force => true do |t|
-    t.string   "title"
     t.string   "panda_video_id"
     t.datetime "created_at"
     t.datetime "updated_at"

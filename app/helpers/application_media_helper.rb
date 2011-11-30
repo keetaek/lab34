@@ -1,0 +1,2 @@
+module ApplicationMediaHelper
+end

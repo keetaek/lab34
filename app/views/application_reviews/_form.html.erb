@@ -1,0 +1,33 @@
+<%= form_for(@application_review) do |f| %>
+  <% if @application_review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@application_review.errors.count, "error") %> prohibited this application_review from being saved:</h2>
+
+      <ul>
+      <% @application_review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :application_id %><br />
+    <%= f.number_field :application_id %>
+  </div>
+  <div class="field">
+    <%= f.label :audition_admin_id %><br />
+    <%= f.number_field :audition_admin_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @audition_admin.user_id %>
+</p>
+
+<p>
+  <b>Audition:</b>
+  <%= @audition_admin.audition_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_audition_admin_path(@audition_admin) %> |
+<%= link_to 'Back', audition_admins_path %>
