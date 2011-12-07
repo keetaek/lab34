@@ -25,7 +25,12 @@ class AuditionsController < ApplicationController
   # GET /auditions/new.json
   def new
     @audition = Audition.new
-
+    
+    #Throw away code
+    3.times do
+      role = @audition.roles.build
+    end
+  
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @audition }

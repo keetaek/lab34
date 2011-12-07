@@ -47,6 +47,11 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip %>
   </div>
+  <div class="field">
+    <%= f.fields_for :roles do |builder| %>
+      <%= render "roles_fields", :f => builder %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

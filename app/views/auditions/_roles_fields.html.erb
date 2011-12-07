@@ -1,0 +1,12 @@
+<div class="role">
+  <div class="role_fields">
+    <%= f.label :title, "Role" %><br />
+    <%= f.text_field :title %><br />
+    <%= f.label :description, "Description" %><br />
+    <%= f.text_area :description, :rows => 3 %><br />
+    <%= f.label :attachment, "attachement" %><br />
+    <%= f.text_field :attachment, :value => "Add File upload feature here" %>
+    <%= f.check_box :_destroy %>
+    <%= f.label :_destroy, "Remove" %>
+  </div>
+</div>
