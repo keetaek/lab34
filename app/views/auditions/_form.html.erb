@@ -49,8 +49,9 @@
   </div>
   <div class="field">
     <%= f.fields_for :roles do |builder| %>
-      <%= render "roles_fields", :f => builder %>
+      <%= render "role_fields", :f => builder %>
     <% end %>
+    <p><%= link_to_add_fields "Add New Role", f, :roles %></p>
   </div>
   <div class="actions">
     <%= f.submit %>
