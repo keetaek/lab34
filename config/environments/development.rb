@@ -14,7 +14,17 @@ Lab34::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true #NOTE: By Default DEV environment doesn't send email. This option forces to send email Keetaek
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address        =>  "smtp.gmail.com",
+    :port           =>  587,
+    :user_name      =>  'keetaek',
+    :password       =>  'hong831004',
+    :authentication =>  'plain',
+    :enable_starttls_auto => true
+  }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -27,6 +37,8 @@ Lab34::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
+
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }  
   #ENV['PANDASTREAM_URL'] = "http://ksid490e-85eb-11df-b41e-12313b082ce2:8x7+v85WsWz1Jgqzlz5+g1zR9P2ex78wg1l61jag@api.pandastream.com:80/927a9d9xk37ded62422d4613229c156f"
+  
 end

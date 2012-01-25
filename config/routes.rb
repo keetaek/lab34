@@ -1,5 +1,5 @@
 Lab34::Application.routes.draw do
-
+  
   resources :user_details
 
   resources :audition_admins
@@ -21,6 +21,8 @@ Lab34::Application.routes.draw do
   resources :auditions
 
   resources :videos
+  
+  resources :password_resets
 
   get 'login' => "sessions#new", :as => 'login'
   post 'login' => "sessions#create"
@@ -29,7 +31,6 @@ Lab34::Application.routes.draw do
   
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "auditions#new"
-  resources :whats
 
   resources :users
 
