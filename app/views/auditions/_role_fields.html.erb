@@ -1,19 +1,28 @@
 <div class="role">
-  <div class="field">
-    <%= f.label :title, "Role" %><br />
-    <%= f.text_field :title, :class => "text_field audition_title" %><br />
+  <div class="fields">
+    <div class="field">
+      <%= f.label :title, "Role" %><br />
+      <%= f.text_field :title, :class => "text_field audition_title" %><br />
+    </div>
+    <div class="field">
+      <%= f.label :description, "Description" %><br />
+      <%= f.text_area :description, :rows => 3 %><br />
+    </div>
+    <div class="field">
+      <%= f.label :attachment, "attachement" %><br />
+      <%= f.text_field :attachment, :value => "Add File upload feature here", :class => "text_field"  %>
+    </div>
+    
+      
+    <%= f.fields_for :role_questions do |builder| %>
+      <%= render "role_question_fields", :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "Add Custom Questions", f, :role_questions %></p>
+  
+      <!-- 
+      <%= f.hidden_field :_destroy %>
+      <%= f.label :_destroy, "Remove" %>
+      -->
+      <%= link_to_remove_fields "remove_role", f %><br />
   </div>
-  <div class="field">
-    <%= f.label :description, "Description" %><br />
-    <%= f.text_area :description, :rows => 3 %><br />
-  </div>
-  <div class="field">
-    <%= f.label :attachment, "attachement" %><br />
-    <%= f.text_field :attachment, :value => "Add File upload feature here", :class => "text_field"  %>
-  </div>
-    <!-- 
-    <%= f.hidden_field :_destroy %>
-    <%= f.label :_destroy, "Remove" %>
-    -->
-    <%= link_to_remove_fields "remove", f %>
 </div>
