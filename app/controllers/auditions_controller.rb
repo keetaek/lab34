@@ -27,9 +27,9 @@ class AuditionsController < ApplicationController
     @audition = Audition.new
     
     #Throw away code
-    3.times do
-      role = @audition.roles.build
-    end
+    #3.times do
+    role = @audition.roles.build
+    #end
   
     respond_to do |format|
       format.html # new.html.erb

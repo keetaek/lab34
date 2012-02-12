@@ -6,9 +6,7 @@ class CreateAuditions < ActiveRecord::Migration
       t.string :logo
       t.text :description
       t.string :status
-      t.datetime :expiration_date
-      t.date :job_start_date
-      t.date :job_end_date
+      t.datetime :deadline_date
       t.string :zip
 
       t.timestamps

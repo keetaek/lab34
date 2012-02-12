@@ -1,59 +1,112 @@
+<div id="container">
+  <ul id="progress_step">
+    <li id="step_one" class="current">
+      Step 1
+      <span>Basic Information</span>
+    </li>
+    <li id="step_two" class="steps">
+      Step 2
+      <span>Roles</span>
+    </li>
+    <li id="step_three" class="steps">
+      Step 3
+      <span>Admin</span>
+    </li>
+    <li id="step_four" class="steps">
+      Step 4
+      <span>Summary</span>
+    </li>
+  </ul>
 <%= form_for(@audition) do |f| %>
   <% if @audition.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@audition.errors.count, "error") %> prohibited this audition from being saved:</h2>
-
       <ul>
       <% @audition.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li><%= msg %></li><!-- TODO: The most of the errors should be caught with javascript-->
       <% end %>
       </ul>
     </div>
   <% end %>
+  
+  <!-- First Step: Basic Information -->
+  <div id="first_step">
+    <div class="form">
+      <h1>Basic information</h1>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :logo %><br />
-    <%= f.text_field :logo %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :expiration_date %><br />
-    <%= f.datetime_select :expiration_date %>
-  </div>
-  <div class="field">
-    <%= f.label :job_start_date %><br />
-    <%= f.date_select :job_start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :job_end_date %><br />
-    <%= f.date_select :job_end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </div>
-  <div class="field">
-    <%= f.fields_for :roles do |builder| %>
-      <%= render "role_fields", :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Add New Role", f, :roles %></p>
-  </div>
+      <div class="field">
+        <%= f.label :logo %><br />
+        <%= f.text_field :logo %>
+      </div>
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, :class => "text_field audition_title" %>
+      </div>
+      <div class="field">
+        <%= f.label :type %><br />
+        <%= f.radio_button :type, 'acting', :checked => true, :class => 'radio' %>
+        <%= f.label :type, 'Acting', :value => 'acting' %><br />
+        <%= f.radio_button :type, 'music', :class => 'radio' %>
+        <%= f.label :type, 'Music', :value => 'music' %><br />
+        <%= f.radio_button :type, 'modeling', :class => 'radio' %>
+        <%= f.label :type, 'Modeling', :value => 'modeling' %><br />
+        <%= f.radio_button :type, 'reality', :class => 'radio' %>
+        <%= f.label :type, 'Reality', :value => 'reality' %>
+      </div>
+      <div class="field">
+        <%= f.label :deadline_date %><br />
+        <!-- 
+          TODO: The database is setup to use datetime to capture exact hour. Eventually we need to activate the hour-minute field to enforce
+          the submission deadline.
+          <%= f.datetime_select :deadline_date, :order => [:month, :day, :year, :hour, :minute], :prompt => {:hour => 'Choose hour'} %>
+          -->
+        <%= f.text_field :deadline_date, :size => 7, :class => "text_field"%>
+        <%= f.label :deadline_date, "mm/dd/yyyy" %>
+      </div>
+      <div class="field">
+        <%= f.label :description %><br />
+        <%= f.text_area :description, :rows => 5 %>
+      </div>
+      <div class="field">
+        <%= f.label :zip, "Audition Zip Code" %><br />
+        <%= f.text_field :zip, :size => 5, :class => "text_field" %>
+      </div>
+    </div><!-- form -->
+    <input class="submit" type="submit" name="submit_first" id="submit_first" value="NEXT" />
+  </div><!-- first_step -->
+  <!-- Second Step: Roles -->  
+  <div id="second_step">
+    <div class="form">
+    <h1>Roles</h1>
+      <%= f.fields_for :roles do |builder| %>
+        <%= render "role_fields", :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Add New Role", f, :roles %></p>
+    </div>
+    <input class="submit" type="submit" name="submit_second" id="submit_second" value="NEXT" />
+  </div><!-- second_step-->
+  <!-- Fourth Step: Summary -->  
+  <div id="fourth_step">
+    <h1>Summary</h1>
+    <div class="form">
+      <table>
+        <tr><td>Title</td><td></td></tr>
+        <tr><td>Type</td><td></td></tr>
+        <tr><td>Deadline</td><td></td></tr>
+        <tr><td>Description</td><td></td></tr>
+        <tr><td>Zip</td><td></td></tr>
+        <tr><td>Roles</td><td></td></tr>
+      </table>
+    </div>
+    <input class="submit" type="submit" name="submit_fourth" id="submit_fourth" value="" />
+  </div><!-- fourth_step-->
+    
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div><!-- end of container-->
+<div id="progress_bar">
+          <div id="progress"></div>
+          <div id="progress_text">0% Complete</div>
+</div>

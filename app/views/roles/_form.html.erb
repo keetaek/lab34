@@ -20,9 +20,19 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :job_start_date %><br />
+    <%= f.date_select :job_start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :job_end_date %><br />
+    <%= f.date_select :job_end_date %>
+  </div>
+  <!-- Attachement should be a link? This should be converted to Paperclip-->
+  <div class="field">
     <%= f.label :attachment %><br />
     <%= f.text_field :attachment %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
