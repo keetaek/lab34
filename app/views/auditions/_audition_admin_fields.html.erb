@@ -1,0 +1,13 @@
+<div class="audition_admin">
+  <div class="fields">
+    <div class="field">
+      <%= f.label :email, "Email" %><br />
+      <%= f.text_field :email, :class => "text_field_height text_field_width" %><br />
+    </div>
+    <div class="field">
+      <%= f.label :email_confirmation, "Email Confirmation" %><br />
+      <%= f.text_field :email_confirmation, :class => "text_field_height text_field_width" %><br />
+    </div>      
+      <%= link_to_remove_fields "remove_admin", ".audition_admin", f %><br />
+  </div>
+</div>

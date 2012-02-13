@@ -90,16 +90,50 @@ $(function(){
         }
     });
 
-    $('#submit_second').click(function(){
+    $('#submit_second').click(function(e){
+        e.preventDefault();//hijack the submit function
+
         //remove classes
         $('#second_step input').removeClass('error').removeClass('valid');
+        //ckeck if inputs aren't empty
+        var fields = $('#second_step input[type=text], #second_step textarea');
+        var error = 0;
+        //TODO: Hidden field shouldn't be affected by the validation.
+        //TODO Add validation
+        fields.each(function(){
+            var value = $(this).val();
+            if( value.length < 4 ) {
+                $(this).addClass('error');
+                $(this).effect("shake", { times:3 }, 50);
+                error++;
+            } else {
+                $(this).addClass('valid');
+            }
+        });
+
+
+        if(!error) {
+            //update progress step
+            $('#step_one').removeClass("current");
+            $('#step_two').removeClass("current");
+            $('#step_three').addClass("current");
+            $('#step_four').removeClass("current");
+            //slide steps
+            $('#second_step').slideUp();
+            $('#third_step').slideDown();
+        } else return false;
+    });
+
+    $('#submit_third').click(function(e){
+        e.preventDefault();//hijack the submit function
 
         var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        var fields = $('#second_step input[type=text]');
+        var fields = $('#third_step input[type=text]');
         var error = 0;
         fields.each(function(){
             var value = $(this).val();
-            if( value.length<1 || value==field_values[$(this).attr('id')] || ( $(this).attr('id')=='email' && !emailPattern.test(value) ) ) {
+            //TODO: Use JQuery Validator plugin to check confirm field is same
+            if( value.length<1  && !emailPattern.test(value))  {
                 $(this).addClass('error');
                 $(this).effect("shake", { times:3 }, 50);
 
@@ -108,43 +142,25 @@ $(function(){
                 $(this).addClass('valid');
             }
         });
-
         if(!error) {
-                //update progress bar
-                $('#progress_text').html('66% Complete');
-                $('#progress').css('width','226px');
-
-                //slide steps
-                $('#second_step').slideUp();
-                $('#third_step').slideDown();
+          //update progress step
+          $('#step_one').removeClass("current");
+          $('#step_two').removeClass("current");
+          $('#step_three').removeClass("current");
+          $('#step_four').addClass("current");
+          //slide steps
+          $('#third_step').slideUp();
+          $('#fourth_step').slideDown();
         } else return false;
-
-    });
-
-    $('#submit_third').click(function(){
-        //update progress bar
-        $('#progress_text').html('100% Complete');
-        $('#progress').css('width','339px');
-
-        //prepare the fourth step
-        var fields = new Array(
-            $('#username').val(),
-            $('#password').val(),
-            $('#email').val(),
-            $('#firstname').val() + ' ' + $('#lastname').val(),
-            $('#age').val(),
-            $('#gender').val(),
-            $('#country').val()
-        );
+        
+        /*
         var tr = $('#fourth_step tr');
         tr.each(function(){
             //alert( fields[$(this).index()] )
             $(this).children('td:nth-child(2)').html(fields[$(this).index()]);
         });
+*/
 
-        //slide steps
-        $('#third_step').slideUp();
-        $('#fourth_step').slideDown();
     });
 
     $('#submit_fourth').click(function(){

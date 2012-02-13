@@ -88,11 +88,11 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
 }
-#container input.text_field {
+#container input.text_field_height {
   height: 35px;
 }
 
-.audition_title{
+.text_field_width{
   width: 350px;
 }
 
@@ -160,7 +160,7 @@ textarea {
     width: 270px;
 }
 
-#container .role {
+#container .role, #container .audition_admin {
   margin-right: 70px;
   border-bottom-style: inset;
   border-bottom-color: grey;
