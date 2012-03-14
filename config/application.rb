@@ -46,6 +46,6 @@ module Lab34
     config.assets.version = '1.0'
     
     config.autoload_paths += %W(#{Rails.root}/lib)
-
+    
   end
 end

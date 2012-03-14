@@ -28,6 +28,10 @@ gem 'panda', '1.5.0'
 
 gem 'jquery-rails'
 
+gem 'carrierwave'
+gem 'fog'
+gem 'rmagick'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

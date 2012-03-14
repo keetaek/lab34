@@ -30,11 +30,79 @@
 });
 
 $(function() {
-  $("#audition_deadline_date").datepicker();
+  $("#audition_deadline_date").datepicker(); //Adding datepicker
 });
 
+//Validator
 $(function(){
+//Step1
+        //ckeck if inputs aren't empty
+        /*
+        var fields = $('#first_step input[type=text], #first_step textarea');
+        var error = 0;
+        fields.each(function(){
+            var value = $(this).val();
+            if( value.length < 4 ) {
+                $(this).addClass('error');
+                $(this).effect("shake", { times:3 }, 50);
+                error++;
+            } else {
+                $(this).addClass('valid');
+            }
+        });
+
+//Step2
+        var fields = $('#second_step input[type=text], #second_step textarea');
+        var error = 0;
+        fields.each(function(){
+            var value = $(this).val();
+            if( value.length < 4 ) {
+                $(this).addClass('error');
+                $(this).effect("shake", { times:3 }, 50);
+                error++;
+            } else {
+                $(this).addClass('valid');
+            }
+        });
+//Step3
+        var fields = $('#third_step input[type=text]');
+        var error = 0;
+        fields.each(function(){
+            var value = $(this).val();
+            //TODO: Use JQuery Validator plugin to check confirm field is same
+            if( value.length<1  && !emailPattern.test(value))  {
+                $(this).addClass('error');
+                $(this).effect("shake", { times:3 }, 50);
+
+                error++;
+            } else {
+                $(this).addClass('valid');
+            }
+        });
+        */
+
+
+        
+});
+$(function(){
+  
+  $.validator.addMethod("postalcode", function(postalcode, element) {
+    return this.optional(element) || postalcode.match(/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXYabceghjklmnpstvxy]{1}\d{1}[A-Za-z]{1} ?\d{1}[A-Za-z]{1}\d{1})$/);
+  }, "Please specify a valid postal/zip code");
     //original field values
+  var v = $("#new_audition").validate({
+    errorClass: 'error',
+    validClass: 'valid',
+    onkeyup: false,
+    onblur: false,
+    errorPlacement: function(error, element) {
+      error.insertBefore( element.prev() );
+    },
+    submitHandler: function() {
+      alert("Submitted thanks");
+    }
+    
+  });
     var field_values = {
             //id        :  value
             'audition_title'  : '',
@@ -43,13 +111,13 @@ $(function(){
             'audition_description'  : '',
             'audition_zip'  : ''
     };
-
+/*
     $('input#audition_title').val(field_values['audition_title']);
     $('input#audition_type').val(field_values['audition_type']);
     $('input#audition_deadline_date').val(field_values['audition_deadline_date']);
     $('input#audition_description').val(field_values['audition_description']);
     $('input#audition_zip').val(field_values['audition_zip']);
-
+*/
     //reset progress path
     $('#step_one').addClass("current");
     $('#step_two').removeClass("current");
@@ -58,9 +126,10 @@ $(function(){
     
     $('#submit_first').click(function(e){
         e.preventDefault();
+        
         //remove classes
         $('#first_step input').removeClass('error').removeClass('valid');
-
+        /*
         //ckeck if inputs aren't empty
         var fields = $('#first_step input[type=text], #first_step textarea');
         var error = 0;
@@ -74,8 +143,10 @@ $(function(){
                 $(this).addClass('valid');
             }
         });
+        */
         //TODO: Add validation for calendar and zip code
-        if(!error) {
+        //if(!error) {
+        if(v.form()) {
             //update progress step
             $('#step_one').removeClass("current");
             $('#step_two').addClass("current");
@@ -160,6 +231,7 @@ $(function(){
             $(this).children('td:nth-child(2)').html(fields[$(this).index()]);
         });
 */
+
 
     });
 

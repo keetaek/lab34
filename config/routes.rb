@@ -22,6 +22,8 @@ Lab34::Application.routes.draw do
 
   resources :videos
   
+  resources :pictures
+  
   resources :password_resets
 
   get 'login' => "sessions#new", :as => 'login'

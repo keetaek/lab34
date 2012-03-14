@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<%= image_tag @picture.image_url(:thumb)%>
+<%= image_tag @picture.image_url()%><br />
+<%= image_tag @picture.image_url(:thumb_fit)%>
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Back', pictures_path %>

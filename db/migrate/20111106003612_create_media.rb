@@ -4,7 +4,6 @@ class CreateMedia < ActiveRecord::Migration
       t.string :title
       t.boolean :private
       t.text :description
-      t.integer :user_id
       t.timestamps
     end
   end

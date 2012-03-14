@@ -17,7 +17,7 @@
       <span>Summary</span>
     </li>
   </ul>
-<%= form_for(@audition) do |f| %>
+<%= form_for @audition, :html => {:multipart => true} do |f| %>
   <% if @audition.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@audition.errors.count, "error") %> prohibited this audition from being saved:</h2>
@@ -36,14 +36,14 @@
 
       <div class="field">
         <%= f.label :logo %><br />
-        <%= f.text_field :logo %>
+        <%= f.file_field :logo %>
       </div>
       <div class="field">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, :class => "text_field_height text_field_width" %>
+        <%= f.label :title %><span class="asterisk">*</span><br />
+        <%= f.text_field :title, :class => "text_field_height text_field_width required" %>
       </div>
       <div class="field">
-        <%= f.label :type %><br />
+        <%= f.label :type %><span class="asterisk">*</span><br />
         <%= f.radio_button :type, 'acting', :checked => true, :class => 'radio' %>
         <%= f.label :type, 'Acting', :value => 'acting' %><br />
         <%= f.radio_button :type, 'music', :class => 'radio' %>
@@ -54,13 +54,13 @@
         <%= f.label :type, 'Reality', :value => 'reality' %>
       </div>
       <div class="field">
-        <%= f.label :deadline_date %><br />
+        <%= f.label :deadline_date %><span class="asterisk">*</span><br />
         <!-- 
           TODO: The database is setup to use datetime to capture exact hour. Eventually we need to activate the hour-minute field to enforce
           the submission deadline.
           <%= f.datetime_select :deadline_date, :order => [:month, :day, :year, :hour, :minute], :prompt => {:hour => 'Choose hour'} %>
           -->
-        <%= f.text_field :deadline_date, :size => 7, :class => "text_field_height"%>
+        <%= f.text_field :deadline_date, :size => 7, :class => "text_field_height required date"%>
         <%= f.label :deadline_date, "mm/dd/yyyy" %>
       </div>
       <div class="field">
@@ -68,8 +68,8 @@
         <%= f.text_area :description, :rows => 5 %>
       </div>
       <div class="field">
-        <%= f.label :zip, "Audition Zip Code" %><br />
-        <%= f.text_field :zip, :size => 5, :class => "text_field_height" %>
+        <%= f.label :zip, "Audition Zip Code" %><span class="asterisk">*</span><br />
+        <%= f.text_field :zip, :size => 5, :class => "text_field_height required postalcode" %>
       </div>
     </div><!-- form -->
     <input class="submit" type="submit" name="submit_first" id="submit_first" value="NEXT" />
@@ -116,7 +116,7 @@
     <%= f.submit %>
     <!--
     <input class="submit" type="submit" name="submit_fourth" id="submit_fourth" value="" />
-    -->
+  -->  
   </div><!-- fourth_step-->
     
   <div class="actions">

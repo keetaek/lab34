@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213011613) do
+ActiveRecord::Schema.define(:version => 20120304054657) do
 
   create_table "application_question_answers", :force => true do |t|
     t.text     "answer"
@@ -37,17 +37,22 @@ ActiveRecord::Schema.define(:version => 20120213011613) do
     t.datetime "updated_at"
   end
 
-  create_table "applications_medium", :id => false, :force => true do |t|
+  create_table "applications_pictures", :id => false, :force => true do |t|
     t.integer "application_id"
-    t.integer "media_id"
+    t.integer "picture_id"
+  end
+
+  create_table "applications_videos", :id => false, :force => true do |t|
+    t.integer "application_id"
+    t.integer "video_id"
   end
 
   create_table "audition_admins", :force => true do |t|
     t.integer  "user_id"
     t.integer  "audition_id"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
   end
 
   create_table "auditions", :force => true do |t|
@@ -71,11 +76,17 @@ ActiveRecord::Schema.define(:version => 20120213011613) do
     t.string   "title"
     t.boolean  "private"
     t.text     "description"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "media_resource_id"
     t.string   "media_resource_type"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "role_questions", :force => true do |t|
@@ -113,15 +124,16 @@ ActiveRecord::Schema.define(:version => 20120213011613) do
     t.string   "firstName"
     t.string   "lastName"
     t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "videos", :force => true do |t|
     t.string   "panda_video_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
