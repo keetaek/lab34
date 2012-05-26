@@ -10,16 +10,11 @@
 /* CSS Reset (Eric Meyer) */
 //html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
-@font-face {
-   font-family: 'Cantarell';
-   src: url(../fonts/Cantarell-Regular.eot);
-   src: local('Cantarell'), url('../fonts/Cantarell-Regular.ttf') format('truetype');
-}
 
 body {
     background-color: #f9f9f9;
     color: #222;
-    font-family: Cantarell, Verdana, sans-serif;
+    font-family: Verdana, sans-serif;
     font-size: 12px;
 }
 
@@ -34,7 +29,6 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     //height: 370px;
     margin: 20px auto;
     padding: 50px 0;
-    overflow: hidden;
     position: relative;
 }
 #container #first_step, #second_step, #third_step, #fourth_step { display: none; }
@@ -48,9 +42,10 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
   border-style:solid;
   border-width:2px;
   border-color:grey;
+  overflow: hidden; //This enables float div to stay inside
 }
 #container h1 {
-    font-size: Cantarell, Verdana, sans-serif;
+    font-size: Verdana, sans-serif;
     font-size: 24px;
     text-shadow: 1px 1px 2px #222;
 }
@@ -80,7 +75,7 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     //background: url('../images/input.png') no-repeat;
     color: #888;
     border: 1px solid #ccc;
-    font-family: Cantarell, Verdana, sans-serif;
+    font-family: Verdana, sans-serif;
     font-weight: bold;
     font-size: 15px;
     padding: 0 10px;
@@ -100,7 +95,7 @@ textarea {
     width: 350px;
     color: #888;
     border: 1px solid #ccc;
-    font-family: Cantarell, Verdana, sans-serif;
+    font-family: Verdana, sans-serif;
     font-weight: bold;
     font-size: 15px;
     padding: 0 10px;
@@ -113,7 +108,7 @@ textarea {
     //background: url('../images/input.png') no-repeat;
     color: #888;
     border: 1px solid #ccc;
-    font-family: Cantarell, Verdana, sans-serif;
+    font-family: Verdana, sans-serif;
     font-weight: bold;
     font-size: 15px;
     padding: 0 10px;
@@ -123,19 +118,28 @@ textarea {
     //width: 0px;//reset
     //height: 0px;//reset
 }
-
-#container input.submit {
-    //background: url('../images/button.png') no-repeat;
-    border: none;
+#container .footer_navigation {
+    width: 100%;
+}
+#container .next_button {
+    float: right;
+    display: inline;
     cursor: pointer;
     width: 85px;
     height: 38px;
-    //position: relative;
-    //bottom: 2px;
-    //left: 655px;
-    margin: 25px 336px 2px
+    margin: 25px 25px 25px
 }
-#container input.submit:focus { border: none; }
+
+#container .back_button {
+    float: left;
+    display: inline;
+    cursor: pointer;
+    width: 85px;
+    height: 38px;
+    margin: 25px 25px 25px
+}
+
+#container input.next_button:focus { border: none; }
 
 //#container input.send{ background: url('../images/send.png') no-repeat; }
 
@@ -182,7 +186,7 @@ textarea {
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
-  //padding: 0px;
+  padding-left: 90px;
 }
 
 #progress_step li {

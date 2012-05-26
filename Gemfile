@@ -9,6 +9,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'execjs'
   gem 'therubyracer'
+  gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
+  gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
   gem 'ruby-debug19'
 end
 
@@ -31,7 +33,8 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
-
+gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'split', require: 'split/dashboard'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -2,7 +2,7 @@ class CreateAuditions < ActiveRecord::Migration
   def change
     create_table :auditions do |t|
       t.string :title
-      t.string :type
+      t.string :audition_type
       t.string :logo
       t.text :description
       t.string :status

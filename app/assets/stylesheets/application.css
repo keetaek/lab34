@@ -39,3 +39,5 @@ nav ul ul a:hover { background-color:#555; }
 .borderradius.rgba nav ul ul li.last { border-left:1px solid rgba(0,0,0,0.1); border-bottom:1px solid rgba(0,0,0,0.1); -moz-border-radius-bottomleft:4px; -moz-border-radius-bottomright:4px; -webkit-border-bottom-left-radius:4px; -webkit-border-bottom-rightright-radius:4px; border-bottom-left-radius:4px; border-bottom-rightright-radius:4px; }  
 .csstransforms ul a span { -moz-transform:rotate(-180deg);-webkit-transform:rotate(-180deg); }
  
+ /* CSS Reset (Eric Meyer) */
+ul {list-style-type: none;}

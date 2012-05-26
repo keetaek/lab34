@@ -5,6 +5,8 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => 'ElPWe0irVgYZtj483x0nfdk5MQtXggdqYdrAUK2R',       # required
     #:region                 => 'us-west-1'  # optional, defaults to 'us-east-1'
   }
+  #TODO: the bucket name should be modified to be compliant with DNS rule. 
+  #Get rid of underscore and replace with dots.
   config.fog_directory  = 'lab34_bucket'                     # required
   #config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
   #config.fog_public     = false                                   # optional, defaults to true

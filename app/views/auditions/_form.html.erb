@@ -12,10 +12,12 @@
       Step 3
       <span>Admin</span>
     </li>
+    <!--
     <li id="step_four" class="steps">
       Step 4
       <span>Summary</span>
     </li>
+  -->
   </ul>
 <%= form_for @audition, :html => {:multipart => true} do |f| %>
   <% if @audition.errors.any? %>
@@ -43,15 +45,15 @@
         <%= f.text_field :title, :class => "text_field_height text_field_width required" %>
       </div>
       <div class="field">
-        <%= f.label :type %><span class="asterisk">*</span><br />
-        <%= f.radio_button :type, 'acting', :checked => true, :class => 'radio' %>
-        <%= f.label :type, 'Acting', :value => 'acting' %><br />
-        <%= f.radio_button :type, 'music', :class => 'radio' %>
-        <%= f.label :type, 'Music', :value => 'music' %><br />
-        <%= f.radio_button :type, 'modeling', :class => 'radio' %>
-        <%= f.label :type, 'Modeling', :value => 'modeling' %><br />
-        <%= f.radio_button :type, 'reality', :class => 'radio' %>
-        <%= f.label :type, 'Reality', :value => 'reality' %>
+        <%= f.label :audition_type %><span class="asterisk">*</span><br />
+        <%= f.radio_button :audition_type, 'acting', :checked => true, :class => 'radio' %>
+        <%= f.label :audition_type, 'Acting', :value => 'acting' %><br />
+        <%= f.radio_button :audition_type, 'music', :class => 'radio' %>
+        <%= f.label :audition_type, 'Music', :value => 'music' %><br />
+        <%= f.radio_button :audition_type, 'modeling', :class => 'radio' %>
+        <%= f.label :audition_type, 'Modeling', :value => 'modeling' %><br />
+        <%= f.radio_button :audition_type, 'reality', :class => 'radio' %>
+        <%= f.label :audition_type, 'Reality', :value => 'reality' %>
       </div>
       <div class="field">
         <%= f.label :deadline_date %><span class="asterisk">*</span><br />
@@ -71,8 +73,11 @@
         <%= f.label :zip, "Audition Zip Code" %><span class="asterisk">*</span><br />
         <%= f.text_field :zip, :size => 5, :class => "text_field_height required postalcode" %>
       </div>
+      <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
+        <input class="next_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
+      </div>
     </div><!-- form -->
-    <input class="submit" type="submit" name="submit_first" id="submit_first" value="NEXT" />
+
   </div><!-- first_step -->
   
   
@@ -85,7 +90,10 @@
       <% end %>
       <p><%= link_to_add_fields "Add New Role", f, :roles %></p>
     </div>
-    <input class="submit" type="submit" name="submit_second" id="submit_second" value="NEXT" />
+    <div class="footer_navigation" id="footer_navigation_second_step" name="footer_navigation_second_step">
+      <input type="submit" name="submit_second_back" id="submit_second_back" class="back_button" value="BACK" />
+      <input type="submit" name="submit_second_next" id="submit_second_next" class="next_button" value="NEXT" />
+    </div>
   </div><!-- second_step-->
   
   
@@ -98,30 +106,37 @@
       <% end %>
       <p><%= link_to_add_fields "Add New Admin", f, :audition_admins %></p>
     </div>
-    <input class="submit" type="submit" name="submit_third" id="submit_third" value="NEXT" />
+    <div class="footer_navigation" id="footer_navigation_third_step" name="footer_navigation_third_step">
+      <input class="back_button" type="submit" name="submit_third_back" id="submit_third_back" class="back_button" value="BACK" />
+      <input class="next_button" type="submit" name="submit_third_next" id="submit_third_next" class="next_button" value="SUBMIT" />
+    </div>
   </div><!-- second_step-->
-  <!-- Fourth Step: Summary -->  
+  <!-- Fourth Step: Summary   
   <div id="fourth_step">
     <h1>Summary</h1>
-    <div class="form">
+    <div class="summary">
+      <div id="summary_title" name="summary_title">
+        <h3>Title</h3><a>Edit</a>
+        <p></p>
+      </div>
+      <div id="summary_Type" name="summary_title">
+      </div>
+      <div id="summary_Deadline" name="summary_title">
+      </div>
       <table>
-        <tr><td>Title</td><td></td></tr>
-        <tr><td>Type</td><td></td></tr>
-        <tr><td>Deadline</td><td></td></tr>
+        <tr><td>Title</td><td id="summary_title"></td></tr>
+        <tr><td>Type</td><td id="summary_type"></td></tr>
+        <tr><td>Deadline</td><td id="summary_deadline"></td></tr>
         <tr><td>Description</td><td></td></tr>
         <tr><td>Zip</td><td></td></tr>
         <tr><td>Roles</td><td></td></tr>
       </table>
     </div>
     <%= f.submit %>
-    <!--
-    <input class="submit" type="submit" name="submit_fourth" id="submit_fourth" value="" />
-  -->  
-  </div><!-- fourth_step-->
     
-  <div class="actions">
+    <input type="next_button" class="submit" name="submit_fourth" id="submit_fourth" value="test" />
 
-  </div>
+  </div>--><!-- fourth_step-->
 <% end %>
 </div><!-- end of container-->
 <!--<div id="progress_bar">

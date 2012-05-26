@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Thumbnail</b>
+  <%= image_tag @user.thumbnail_url(:thumb) %>
+</p>
+
+<p>
+  <b>email</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Name</b>
+  <%= @user.firstName %> <%= @user.lastName %> 
+</p>
+
+<p>
+  <b>type</b>
+  <%= @user.type %>
+</p>
+
+<p>
+  <b>IMDB URL</b>
+  <%= @user.imdbUrl %>
+</p>
+
+<p>
+  <b>Facebook ID</b>
+  <%= @user.facebookId %>
+</p>
+
+<p>
+  <b>Twitter ID</b>
+  <%= @user.twitterId %>
+</p>
+
+<p>
+  <b>LinkedIn URL</b>
+  <%= @user.linkedInUrl %>
+</p>
+
+<p>
+  <b>SelfBio</b>
+  <%= @user.selfBio %>
+</p>
+
+<p>
+  <b>Cities</b>
+  <% @city_tags.each do |city| %>
+     <a class="tag city_tag"><%= city %></a>
+  <% end %>
+  <input id="city_suggest" name="city_suggest"/> 
+  <input id="city_suggest_jquery" name="city_suggest_jquery"/> 
+
+</p>
+
+<%= link_to 'Edit', edit_audition_path(@audition) %> |
+<%= link_to 'Back', auditions_path %>
+<%= javascript_include_tag params[:controller] %> 

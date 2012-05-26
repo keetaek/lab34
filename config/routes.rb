@@ -30,6 +30,7 @@ Lab34::Application.routes.draw do
   post 'login' => "sessions#create"
   get 'logout' => "sessions#destroy", :as => 'logout'
 
+  match 'users/:id/profile' => 'users#show'
   
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "auditions#new"
@@ -37,6 +38,8 @@ Lab34::Application.routes.draw do
   resources :users
 
   resources :sessions
+
+  mount Split::Dashboard, at: 'split'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
