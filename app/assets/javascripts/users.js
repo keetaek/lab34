@@ -31,8 +31,7 @@ $(function() {
         minLength: 2,
         source: cities,
         select: function( event, ui ) {
-
-            $( "#new_city_label" ).val( ui.item.value );
+            $('#city_tags').append('<a href="javascript:void(0)" class="tag city_tag">'+ ui.item.value + '</a>');
             return false;
         }
     });
@@ -182,4 +181,17 @@ function setCurrentProgressStep (step) {
     $('#step_three').removeClass("current");
     $('#step_four').removeClass("current");
     $(step).addClass("current");
+}
+
+function addNewTag(currTag, city_list) {
+    var currText = currTag.text().trim();
+    var index = city_list.indexOf(currText);
+    
+    if (index == -1) {
+        //Item doesn't exist. Add
+        city_list[city_list.length] = currText;
+    } else {
+        //Item exists. Remove
+        city_list.splice(index,1);
+    }
 }
