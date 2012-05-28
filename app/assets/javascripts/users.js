@@ -46,8 +46,8 @@ $(function(){
   var v = $(".edit_user").validate({
     errorClass: 'error',
     validClass: 'valid',
-    onkeyup: false,
-    onblur: false,
+    //onkeyup: false,
+    //onblur: false,
     errorPlacement: function(error, element) {
       error.insertBefore( element.prev() );
     }

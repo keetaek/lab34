@@ -1,23 +1,17 @@
-<div id="container">
+<div id="user_container" class="multistep_form">
   <ul id="progress_step">
     <li id="step_one" class="current">
       Step 1
       <span>Basic Information</span>
     </li>
-    <li id="step_two" class="steps">
+    <li id="step_two">
       Step 2
       <span>I am ..</span>
     </li>
-    <li id="step_three" class="steps">
+    <li id="step_three">
       Step 3
       <span>Uploads</span>
     </li>
-    <!--
-    <li id="step_four" class="steps">
-      Step 4
-      <span>Summary</span>
-    </li>
-  -->
   </ul>
 <%= form_for @user, :html => {:multipart => true} do |f| %>
   <% if @user.errors.any? %>
@@ -32,78 +26,69 @@
   <% end %>
   
   <!-- First Step: Basic Information -->
-  <div id="first_step">
-    <div class="form">
-      <h1>Basic information</h1>
+  <div id="first_step" class="step_form">
+    <h1>Basic information</h1>
 
-      <div class="field">
-        <%= f.label :thumbnail %><br />
-        <%= f.file_field :thumbnail %>
-      </div>
-      <div class="field">
-        <%= f.label :firstName, "First Name" %><span class="asterisk">*</span><br />
-        <%= f.text_field :firstName, :class => "text_field_height text_field_width required" %>
-      </div>
-      <div class="field">
-        <%= f.label :lastName, "Last Name" %><span class="asterisk">*</span><br />
-        <%= f.text_field :lastName, :class => "text_field_height text_field_width required" %>
-      </div>
-      <div class="field expandable">
-        <%= link_to "short bio" %><br />
-        <%= f.text_area :selfBio, :rows => 5 %>
-      </div>
-      <div class="field expandable">
-        <%= link_to "IMDb URL" %><br />
-        <%= f.text_field :imdbUrl, :class => "text_field_height text_field_width" %>
-      </div>
-      <div class="field expandable">
-        <%= link_to "Facebook page" %><br />
-        <%= f.text_field :facebookId, :class => "text_field_height text_field_width" %>
-      </div>
-      <div class="field expandable">
-        <%= link_to "Twitter ID" %><br />
-        <%= f.text_field :twitterId, :class => "text_field_height text_field_width" %>
-      </div>
-      <div class="field expandable">
-        <%= link_to "LinkedIn Page" %><br />
-        <%= f.text_field :linkedInUrl, :class => "text_field_height text_field_width" %>
-      </div>
-      <div class="field" id="city_tags">
-        <%= f.label :city_list, "City Tags (Test)" %><br />
-        <%= f.text_field :city_list, :class => "text_field_height text_field_width" %>
-        <% if @city_tags.length > MINIMUM_NUMBER_OF_TAGS  %>
-          <% @city_tags.take(MINIMUM_NUMBER_OF_TAGS).each do |city| %>
-            <a class="tag city_tag"><%= city %></a>
-          <% end %>
-        <% else %>
-          <a href="javascript:void(0)" class="tag city_tag">Los Angeles, CA</a>
-          <a href="javascript:void(0)" class="tag city_tag">Chicago, IL</a>
-          <a href="javascript:void(0)" class="tag city_tag">Seattle, WA</a>
-          <a href="javascript:void(0)" class="tag city_tag">Miami, FL</a>
-          <a href="javascript:void(0)" class="tag city_tag">San Diego, CA</a>
+    <div class="field">
+      <%= f.label :thumbnail %><br />
+      <%= f.file_field :thumbnail %>
+    </div>
+    <div class="field">
+      <%= f.label :firstName, "First Name" %><span class="asterisk">*</span><br />
+      <%= f.text_field :firstName, :class => "text_field_height text_field_width required" %>
+    </div>
+    <div class="field">
+      <%= f.label :lastName, "Last Name" %><span class="asterisk">*</span><br />
+      <%= f.text_field :lastName, :class => "text_field_height text_field_width required" %>
+    </div>
+    <div class="field expandable">
+      <%= link_to "short bio" %><br />
+      <%= f.text_area :selfBio, :rows => 5 %>
+    </div>
+    <div class="field expandable">
+      <%= link_to "IMDb URL" %><br />
+      <%= f.text_field :imdbUrl, :class => "text_field_height text_field_width" %>
+    </div>
+    <div class="field expandable">
+      <%= link_to "Facebook page" %><br />
+      <%= f.text_field :facebookId, :class => "text_field_height text_field_width" %>
+    </div>
+    <div class="field expandable">
+      <%= link_to "Twitter ID" %><br />
+      <%= f.text_field :twitterId, :class => "text_field_height text_field_width" %>
+    </div>
+    <div class="field expandable">
+      <%= link_to "LinkedIn Page" %><br />
+      <%= f.text_field :linkedInUrl, :class => "text_field_height text_field_width" %>
+    </div>
+    <div class="field" id="city_tags">
+      <%= f.label :city_list, "City Tags (Test)" %><br />
+      <%= f.text_field :city_list, :class => "text_field_height text_field_width" %>
+      <% if @city_tags.length > MINIMUM_NUMBER_OF_TAGS  %>
+        <% @city_tags.take(MINIMUM_NUMBER_OF_TAGS).each do |city| %>
+          <a class="tag city_tag"><%= city %></a>
         <% end %>
-      </div>
-      <div class="auto_suggest">
-          <input id="new_city_label" title="city, state" />
-      </div>
-
-
-      
-      <!-- TODO: Placeholder for tagging feature-->
-
-      <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
-        <input class="next_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
-      </div>
-    </div><!-- form -->
+      <% else %>
+        <a href="javascript:void(0)" class="tag city_tag">Los Angeles, CA</a>
+        <a href="javascript:void(0)" class="tag city_tag">Chicago, IL</a>
+        <a href="javascript:void(0)" class="tag city_tag">Seattle, WA</a>
+        <a href="javascript:void(0)" class="tag city_tag">Miami, FL</a>
+        <a href="javascript:void(0)" class="tag city_tag">San Diego, CA</a>
+      <% end %>
+    </div>
+    <div class="auto_suggest">
+        <input id="new_city_label" title="city, state" />
+    </div>
+    <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
+      <input class="next_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
+    </div>
   </div><!-- first_step -->
   
   
   <!-- Second Step: Roles -->  
-  <div id="second_step">
-    <div class="form">
+  <div id="second_step" class="step_form">
     <h1>Roles</h1>
       <!-- TODO: Placeholder for tagging feature-->
-    </div>
     <div class="footer_navigation" id="footer_navigation_second_step" name="footer_navigation_second_step">
       <input type="submit" name="submit_second_back" id="submit_second_back" class="back_button" value="BACK" />
       <input type="submit" name="submit_second_next" id="submit_second_next" class="next_button" value="NEXT" />
@@ -112,12 +97,10 @@
   
   
   <!-- Third Step: Uploads -->  
-  <div id="third_step">
-    <div class="form">
+  <div id="third_step" class="step_form">
     <h1>Uploads</h1>
       <h2>Placeholder for picture upload</h2>
       <h2>Placeholder for video upload: Ideally this should kick off video upload pipeline instead of uploading them on this page</h2>
-    </div>
     <div class="footer_navigation" id="footer_navigation_third_step" name="footer_navigation_third_step">
       <input class="back_button" type="submit" name="submit_third_back" id="submit_third_back" class="back_button" value="BACK" />
       <input class="next_button" type="submit" name="submit_third_next" id="submit_third_next" class="next_button" value="SUBMIT" />
@@ -125,7 +108,7 @@
   </div><!-- second_step-->
  
 <% end %>
-</div><!-- end of container-->
+</div><!-- end of user_container-->
 
 <!--<div id="progress_bar">
           <div id="progress"></div>

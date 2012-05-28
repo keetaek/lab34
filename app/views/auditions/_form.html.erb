@@ -1,23 +1,17 @@
-<div id="container">
+<div id="audition_container" class="multistep_form">
   <ul id="progress_step">
     <li id="step_one" class="current">
       Step 1
       <span>Basic Information</span>
     </li>
-    <li id="step_two" class="steps">
+    <li id="step_two">
       Step 2
       <span>Roles</span>
     </li>
-    <li id="step_three" class="steps">
+    <li id="step_three">
       Step 3
       <span>Admin</span>
     </li>
-    <!--
-    <li id="step_four" class="steps">
-      Step 4
-      <span>Summary</span>
-    </li>
-  -->
   </ul>
 <%= form_for @audition, :html => {:multipart => true} do |f| %>
   <% if @audition.errors.any? %>
@@ -32,64 +26,59 @@
   <% end %>
   
   <!-- First Step: Basic Information -->
-  <div id="first_step">
-    <div class="form">
-      <h1>Basic information</h1>
+  <div id="first_step" class="step_form">
+    <h1>Basic information</h1>
 
-      <div class="field">
-        <%= f.label :logo %><br />
-        <%= f.file_field :logo %>
-      </div>
-      <div class="field">
-        <%= f.label :title %><span class="asterisk">*</span><br />
-        <%= f.text_field :title, :class => "text_field_height text_field_width required" %>
-      </div>
-      <div class="field">
-        <%= f.label :audition_type %><span class="asterisk">*</span><br />
-        <%= f.radio_button :audition_type, 'acting', :checked => true, :class => 'radio' %>
-        <%= f.label :audition_type, 'Acting', :value => 'acting' %><br />
-        <%= f.radio_button :audition_type, 'music', :class => 'radio' %>
-        <%= f.label :audition_type, 'Music', :value => 'music' %><br />
-        <%= f.radio_button :audition_type, 'modeling', :class => 'radio' %>
-        <%= f.label :audition_type, 'Modeling', :value => 'modeling' %><br />
-        <%= f.radio_button :audition_type, 'reality', :class => 'radio' %>
-        <%= f.label :audition_type, 'Reality', :value => 'reality' %>
-      </div>
-      <div class="field">
-        <%= f.label :deadline_date %><span class="asterisk">*</span><br />
-        <!-- 
-          TODO: The database is setup to use datetime to capture exact hour. Eventually we need to activate the hour-minute field to enforce
-          the submission deadline.
-          <%= f.datetime_select :deadline_date, :order => [:month, :day, :year, :hour, :minute], :prompt => {:hour => 'Choose hour'} %>
-          -->
-        <%= f.text_field :deadline_date, :size => 7, :class => "text_field_height required date"%>
-        <%= f.label :deadline_date, "mm/dd/yyyy" %>
-      </div>
-      <div class="field">
-        <%= f.label :description %><br />
-        <%= f.text_area :description, :rows => 5 %>
-      </div>
-      <div class="field">
-        <%= f.label :zip, "Audition Zip Code" %><span class="asterisk">*</span><br />
-        <%= f.text_field :zip, :size => 5, :class => "text_field_height required postalcode" %>
-      </div>
-      <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
-        <input class="next_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
-      </div>
-    </div><!-- form -->
-
+    <div class="field">
+      <%= f.label :logo %><br />
+      <%= f.file_field :logo %>
+    </div>
+    <div class="field">
+      <%= f.label :title %><span class="asterisk">*</span><br />
+      <%= f.text_field :title, :class => "text_field_height text_field_width required" %>
+    </div>
+    <div class="field">
+      <%= f.label :audition_type %><span class="asterisk">*</span><br />
+      <%= f.radio_button :audition_type, 'acting', :checked => true, :class => 'radio' %>
+      <%= f.label :audition_type, 'Acting', :value => 'acting' %><br />
+      <%= f.radio_button :audition_type, 'music', :class => 'radio' %>
+      <%= f.label :audition_type, 'Music', :value => 'music' %><br />
+      <%= f.radio_button :audition_type, 'modeling', :class => 'radio' %>
+      <%= f.label :audition_type, 'Modeling', :value => 'modeling' %><br />
+      <%= f.radio_button :audition_type, 'reality', :class => 'radio' %>
+      <%= f.label :audition_type, 'Reality', :value => 'reality' %>
+    </div>
+    <div class="field">
+      <%= f.label :deadline_date %><span class="asterisk">*</span><br />
+      <!-- 
+        TODO: The database is setup to use datetime to capture exact hour. Eventually we need to activate the hour-minute field to enforce
+        the submission deadline.
+        <%= f.datetime_select :deadline_date, :order => [:month, :day, :year, :hour, :minute], :prompt => {:hour => 'Choose hour'} %>
+        -->
+      <%= f.text_field :deadline_date, :size => 7, :class => "text_field_height required date"%>
+      <%= f.label :deadline_date, "mm/dd/yyyy" %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :rows => 5 %>
+    </div>
+    <div class="field">
+      <%= f.label :zip, "Audition Zip Code" %><span class="asterisk">*</span><br />
+      <%= f.text_field :zip, :size => 5, :class => "text_field_height required postalcode" %>
+    </div>
+    <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
+      <input class="next_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
+    </div>
   </div><!-- first_step -->
   
   
   <!-- Second Step: Roles -->  
-  <div id="second_step">
-    <div class="form">
+  <div id="second_step" class="step_form">
     <h1>Roles</h1>
       <%= f.fields_for :roles do |builder| %>
         <%= render "role_fields", :f => builder %>
       <% end %>
       <p><%= link_to_add_fields "Add New Role", f, :roles %></p>
-    </div>
     <div class="footer_navigation" id="footer_navigation_second_step" name="footer_navigation_second_step">
       <input type="submit" name="submit_second_back" id="submit_second_back" class="back_button" value="BACK" />
       <input type="submit" name="submit_second_next" id="submit_second_next" class="next_button" value="NEXT" />
@@ -98,14 +87,12 @@
   
   
   <!-- Third Step: Roles -->  
-  <div id="third_step">
-    <div class="form">
+  <div id="third_step" class="step_form">
     <h1>Admin</h1>
       <%= f.fields_for :audition_admins do |builder| %>
         <%= render "audition_admin_fields", :f => builder %>
       <% end %>
       <p><%= link_to_add_fields "Add New Admin", f, :audition_admins %></p>
-    </div>
     <div class="footer_navigation" id="footer_navigation_third_step" name="footer_navigation_third_step">
       <input class="back_button" type="submit" name="submit_third_back" id="submit_third_back" class="back_button" value="BACK" />
       <input class="next_button" type="submit" name="submit_third_next" id="submit_third_next" class="next_button" value="SUBMIT" />
@@ -138,7 +125,7 @@
 
   </div>--><!-- fourth_step-->
 <% end %>
-</div><!-- end of container-->
+</div><!-- end of audition_container-->
 <!--<div id="progress_bar">
           <div id="progress"></div>
           <div id="progress_text">0% Complete</div>
