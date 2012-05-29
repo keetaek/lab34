@@ -1,5 +1,5 @@
 <div id="audition_container" class="multistep_form">
-  <ul id="progress_step">
+  <ul id="progress_step" class="progress_bar">
     <li id="step_one" class="current">
       Step 1
       <span>Basic Information</span>
@@ -67,7 +67,7 @@
       <%= f.text_field :zip, :size => 5, :class => "text_field_height required postalcode" %>
     </div>
     <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
-      <input class="next_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
+      <input class="next_button nav_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
     </div>
   </div><!-- first_step -->
   
@@ -80,8 +80,8 @@
       <% end %>
       <p><%= link_to_add_fields "Add New Role", f, :roles %></p>
     <div class="footer_navigation" id="footer_navigation_second_step" name="footer_navigation_second_step">
-      <input type="submit" name="submit_second_back" id="submit_second_back" class="back_button" value="BACK" />
-      <input type="submit" name="submit_second_next" id="submit_second_next" class="next_button" value="NEXT" />
+      <input type="submit" name="submit_second_back" id="submit_second_back" class="back_button nav_button" value="BACK" />
+      <input type="submit" name="submit_second_next" id="submit_second_next" class="next_button nav_button" value="NEXT" />
     </div>
   </div><!-- second_step-->
   
@@ -94,8 +94,8 @@
       <% end %>
       <p><%= link_to_add_fields "Add New Admin", f, :audition_admins %></p>
     <div class="footer_navigation" id="footer_navigation_third_step" name="footer_navigation_third_step">
-      <input class="back_button" type="submit" name="submit_third_back" id="submit_third_back" class="back_button" value="BACK" />
-      <input class="next_button" type="submit" name="submit_third_next" id="submit_third_next" class="next_button" value="SUBMIT" />
+      <input class="back_button nav_button" type="submit" name="submit_third_back" id="submit_third_back" value="BACK" />
+      <input class="next_button nav_button" type="submit" name="submit_third_next" id="submit_third_next" value="SUBMIT" />
     </div>
   </div><!-- second_step-->
   <!-- Fourth Step: Summary   
@@ -121,13 +121,9 @@
     </div>
     <%= f.submit %>
     
-    <input type="next_button" class="submit" name="submit_fourth" id="submit_fourth" value="test" />
+    <input type="next_button nav_button" class="submit" name="submit_fourth" id="submit_fourth" value="test" />
 
   </div>--><!-- fourth_step-->
 <% end %>
 </div><!-- end of audition_container-->
-<!--<div id="progress_bar">
-          <div id="progress"></div>
-          <div id="progress_text">0% Complete</div>
-</div>
--->
+

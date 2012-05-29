@@ -86,9 +86,7 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     font-size: 24px;
     text-shadow: 1px 1px 2px #222;
 }
-
-
-
+/*step_form: input fields*/
 .step_form input {
     color: #888;
     border: 1px solid #ccc;
@@ -99,6 +97,12 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     border-radius: 6px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
+}
+
+/*Input text field, changing color when focused*/
+.step_form input:focus, .step_form select:focus {
+    border: 1px solid #a90329;
+    color: #a90329;
 }
 
 .step_form input.radio {
@@ -112,10 +116,75 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
 }
+.step_form .text_field_height {
+  height: 35px;
+}
 
-.step_form .default_text_box_size {
-    height: 35px;
-    width: 350px;
+.step_form .text_field_width{
+  width: 350px;
+}
+
+/**Buttons**/
+.step_form .next_button {
+    float: right;
+    margin: 25px 25px 25px
+}
+
+.step_form .back_button {
+    float: left;
+    margin: 25px 25px 25px
+}
+
+.step_form .nav_button {
+	display: inline;
+    cursor: pointer;
+    width: 85px;
+    height: 38px;
+}
+
+/**Validation**/
+.step_form .error { border: 1px solid red; }
+.step_form .valid { border-radiuser: 1px solid #1FFF00; }
+
+.step_form select { padding: 5px 0 5px 25px; }
+.step_form option { padding: 0 15px; }
+
+/**Label**/
+.step_form label {
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 14px;
+    width: 270px;
+}
+
+/*Progress Status Bar*/
+.progress_bar {
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 90px;
+}
+
+/*Step Title*/
+.progress_bar li {
+  font-size: 24px;
+  float: left;
+  padding: 18px;
+  color: #B0B1B3;
+}
+
+/*Step Description*/
+.progress_bar li span {
+  font-size: 11px;
+  display: block;
+}
+
+/*Current Step*/
+.progress_bar li.current{
+  color: black;
 }
 
 /******tagging******/

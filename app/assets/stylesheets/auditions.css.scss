@@ -2,15 +2,7 @@
 #audition_container #second_step, #third_step, #fourth_step { display: none; }
 #audition_container #first_step { display: block; }
 
-#audition_container input.text_field_height {
-  height: 35px;
-}
-
-.text_field_width{
-  width: 350px;
-}
-
-textarea {
+#audition_container textarea {
     width: 350px;
     color: #888;
     border: 1px solid #ccc;
@@ -23,52 +15,6 @@ textarea {
     -webkit-border-radius: 6px;
 }
 
-#audition_container .footer_navigation {
-    width: 100%;
-}
-#audition_container .next_button {
-    float: right;
-    display: inline;
-    cursor: pointer;
-    width: 85px;
-    height: 38px;
-    margin: 25px 25px 25px
-}
-
-#audition_container .back_button {
-    float: left;
-    display: inline;
-    cursor: pointer;
-    width: 85px;
-    height: 38px;
-    margin: 25px 25px 25px
-}
-
-#audition_container input.next_button:focus { border: none; }
-
-//#audition_container input.send{ background: url('../images/send.png') no-repeat; }
-
-#audition_container .error { border: 1px solid red; }
-#audition_container .valid { border: 1px solid #1FFF00; }
-
-#audition_container input:focus, #audition_container select:focus {
-    border: 1px solid #a90329;
-    color: #a90329;
-}
-
-#audition_container select { padding: 5px 0 5px 25px; }
-#audition_container option { padding: 0 15px; }
-
-#audition_container label {
-    color: #666;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 14px;
-    //float: right;
-    //margin: 23px -25px;
-    width: 270px;
-}
-
 #audition_container .role, #audition_container .audition_admin {
   margin-right: 70px;
   border-bottom-style: inset;
@@ -76,65 +22,7 @@ textarea {
   padding: 10px 0;
 }
 
-//Add and remove field button (roles and role_questions)
-.add_field {
-}
-
+//Form input field remove button
 .remove_field {
   float:right;
-}
-
-//Progress Indicator on the top of the page
-#progress_step {
-  list-style: none;
-  width: 100%;
-  overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 90px;
-}
-
-#progress_step li {
-  font-size: 24px;
-  float: left;
-  padding: 18px;
-  color: #B0B1B3;
-}
-
-#progress_step li span {
-  font-size: 11px;
-  display: block;
-}
-
-#progress_step li.current{
-  color: black;
-}
-
-#progress_bar {
-    background: url('../images/progress_bar.png') no-repeat;
-    width: 339px;
-    height: 24px;
-    margin: 0 auto;
-    position: relative;
-}
-
-#progress {
-    background: url('../images/progress.png') repeat-x;
-    width: 0px;
-    height: 23px;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-}
-#progress_text {
-    position: relative;
-    line-height: 21px;
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 2px #222;
-    width: 339px;
-    height: 24px;
-    top: -23px;
-    left: 0;
 }
