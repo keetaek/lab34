@@ -1,0 +1,51 @@
+/******tagging******/
+.tag {
+    font-family: Helvetica, Arial, sans-serif;
+    background: #588fe5;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    padding: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin: 3px 17px 0 0;
+    text-decoration: none;
+}
+ 
+.tag:hover {
+    background-color: #739fe4;
+}
+ 
+.tag:before {
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    content: "";
+    display: inline-block;
+    border-radius: 20px;
+    margin: 0 5px 0 0;
+}
+ 
+.tag:after {
+    display: inline-block;
+    border: 13px solid;
+    border-color: transparent transparent transparent #588fe5;
+    height: 0;
+    width: 0;
+    position: absolute;
+    right: -26px;
+    top: 0;
+    content: "";
+    display: inline-block;
+}
+ 
+.tag_selected {
+    background: blue;
+}
+.tag_selected:after {
+    border-color: transparent transparent transparent blue;
+}
+
+.tag:hover:after {
+    border-color: transparent transparent transparent #739fe4;
+}

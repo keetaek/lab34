@@ -1,0 +1,124 @@
+/******multi-step form******/
+.multistep_form {
+    width: 500px;
+    margin: 20px auto;
+    padding: 50px 0;
+    position: relative;
+}
+
+.multistep_form form {
+    border-style:solid;
+    border-width:2px;
+    border-color:grey;
+    overflow: hidden; /*This enables float div to stay inside*/
+}
+
+.multistep_form .step_form { 
+  padding: 30px 0 0 50px;   
+}
+
+.step_form h1 {
+    font-size: Verdana, sans-serif;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px #222;
+}
+/*step_form: input fields*/
+.step_form input {
+    color: #888;
+    border: 1px solid #ccc;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0 10px;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
+
+/*Input text field, changing color when focused*/
+.step_form input:focus, .step_form select:focus {
+    border: 1px solid #a90329;
+    color: #a90329;
+}
+
+.step_form input.radio {
+    color: #888;
+    border: 1px solid #ccc;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0 10px;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
+.step_form .text_field_height {
+  height: 35px;
+}
+
+.step_form .text_field_width{
+  width: 350px;
+}
+
+/**Buttons**/
+.step_form .next_button {
+    float: right;
+    margin: 25px 25px 25px
+}
+
+.step_form .back_button {
+    float: left;
+    margin: 25px 25px 25px
+}
+
+.step_form .nav_button {
+	display: inline;
+    cursor: pointer;
+    width: 85px;
+    height: 38px;
+}
+
+/**Validation**/
+.step_form .error { border: 1px solid red; }
+.step_form .valid { border-radiuser: 1px solid #1FFF00; }
+
+.step_form select { padding: 5px 0 5px 25px; }
+.step_form option { padding: 0 15px; }
+
+/**Label**/
+.step_form label {
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 14px;
+    width: 270px;
+}
+
+/*Progress Status Bar*/
+.progress_bar {
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 90px;
+}
+
+/*Step Title*/
+.progress_bar li {
+  font-size: 24px;
+  float: left;
+  padding: 18px;
+  color: #B0B1B3;
+}
+
+/*Step Description*/
+.progress_bar li span {
+  font-size: 11px;
+  display: block;
+}
+
+/*Current Step*/
+.progress_bar li.current{
+  color: black;
+}

@@ -1,37 +1,54 @@
 //= require jquery.autoSuggest
 $(function() {
-  var cache = {},lastXhr = null, city_list = new Array(), cities = null;
+    var cities = null;
 
-    $(".city_tag").click(function() {
-    	var currText = $(this).text().trim();
-    	var index = city_list.indexOf(currText);
-    	
-    	if (index == -1) {
-    		//Item doesn't exist. Add
-    		city_list[city_list.length] = currText;
-    	} else {
-    		//Item exists. Remove
-    	city_list.splice(index,1);
-    	}
-    $('#user_city_list').val(city_list.join("|"));
+    //on? On is used to add event handler for newly added element
+    $("#user_container").on('click', '.city_tag', function() {
+        selectExistingTag($(this), "#user_city_list");
     });
 
-    cities = [
+
+    //hiding input box by default
+    $('.auto_suggest > input').hide();    
+
+    var cities = [
          "New York, NY", "Houston, TX", "Los Angeles, CA", "Chicago, IL",
          "Philadelphia, PA", "Pittsburgh, PA", "Phoenix, AZ", "San Antonio, TX",
-         "San Diego, CA", "Dallas, TX", "San Jose, CA", "Jacksonville, FL",
+         "San Diego, CA", "Dallas, TX", "San Jose, CA", "Jacksonville, FL", "Miami, FL",
          "Indianapolis, IN", "San Francisco, CA", "Austin, Texas",
          "Columbus, OH", "Fort Worth, TX", "Charlotte, NC", "Detroit, MI",
          "El Paso, TX", "Memphis, TN", "Baltimore, MD", "Boston, MA",
          "Seattle, WA", "Washington, D.C.", "Nashville, TN", "Denver, CO", 
          "Louisville, KY", "Milwaukee, WI"
     ];
-     
+
+    //Displaying the input field
+
+    $('.auto_suggest > a').click(function(){
+        $(this).nextAll('input').show('normal');
+        $(this).nextAll('input').focus();
+        $(this).hide();
+    });
+
     $( "#new_city_label" ).autocomplete({
         minLength: 2,
         source: cities,
         select: function( event, ui ) {
-            $('#city_tags').append('<a href="javascript:void(0)" class="tag city_tag">'+ ui.item.value + '</a>');
+
+            var selectedCity = ui.item.value;
+            var existingTag = doesTagExist(selectedCity, "city_tag")
+            if (existingTag != null) {
+                existingTag.addClass('tag_selected');//Changing Color
+            } else {
+                //Adding new tag
+                $('#city_tags').append('<a href="javascript:void(0)" class="tag city_tag tag_selected">'+ ui.item.value + '</a>');
+            }
+
+            //Update the hidden input box
+            updateHiddenField(selectedCity, "#user_city_list", true)
+            //Post process: Clean up input box, then hide it, then show "Add More" link
+            $('.auto_suggest > input').val(null).hide();
+            $('.auto_suggest > a').show('normal');
             return false;
         }
     });
@@ -65,17 +82,13 @@ $(function(){
         //remove classes
         $('#first_step input').removeClass('error').removeClass('valid');
 
-        //TODO: Add validation for calendar and zip code
         //if(!error) {
         if(v.form()) {
             //update progress step
-            //setCurrentProgressStep('#step_two');
-
+            setCurrentProgressStep('#step_two');
             //slide steps
-            //$('#first_step').slideUp();
-            //$('#second_step').slideDown(); 
-            $('.edit_user').submit();
-
+            $('#first_step').slideUp();
+            $('#second_step').slideDown(); 
         } else {
           return false;
         }
@@ -132,7 +145,7 @@ $(function(){
             }
         });
         if(!error) { 
-          $('#new_audition').submit();
+            $('.edit_user').submit();
         } else return false;
     });
 
@@ -152,12 +165,8 @@ $(function(){
     });
 });
 
+//Expandable Fields
 $(function() {
-
-    //Change tag color when s
-	$('.city_tag').click(function() {
-		$(this).toggleClass('tag_selected');
-	});
 
 	//The anchor tag should be wrapped around label tag
 	$('.expandable > a').each(function(){
@@ -183,15 +192,83 @@ function setCurrentProgressStep (step) {
     $(step).addClass("current");
 }
 
-function addNewTag(currTag, city_list) {
-    var currText = currTag.text().trim();
-    var index = city_list.indexOf(currText);
+//Used when existing tag is selected
+//@param selectedTagSelector: (Jquery Selector) - tag selected
+//@param hiddenTag (String) - hidden field maintain the full list
+function selectExistingTag(selectedTagSelector, hiddenTag) {
+    var hiddenTagSelector = $(hiddenTag);
     
-    if (index == -1) {
-        //Item doesn't exist. Add
-        city_list[city_list.length] = currText;
+
+    if (selectedTagSelector.hasClass('tag_selected')) {
+        //DESELECTED
+        selectedTagSelector.removeClass('tag_selected');//Changing Color
+        updateHiddenField(selectedTagSelector.text(), hiddenTag, false);//updating hidden field       
     } else {
-        //Item exists. Remove
-        city_list.splice(index,1);
+         //SELECTED
+        selectedTagSelector.addClass('tag_selected');//Changing Color
+        updateHiddenField(selectedTagSelector.text(), hiddenTag, true);//updating hidden field
     }
+    //selectedTagSelector.toggleClass('tag_selected');//Changing Color
+    //updateHiddenField(selectedTagSelector.text(), hiddenTag);//updating hidden field
+} 
+
+function doesTagExist(selectedTagValue, tagClass) {
+    var existingTag = null;
+    spaceRemovedTagValue = removeWhiteSpace(selectedTagValue)
+    $('.' + tagClass).each(
+        function(index) {
+            if (spaceRemovedTagValue == removeWhiteSpace($(this).text())) {
+                existingTag = $(this);
+                return false;
+            }
+        }
+    );
+    return existingTag;
+}
+
+function removeWhiteSpace(text) {
+    var spaceFreeText = null;
+    spaceFreeText = text.replace(/\s/g, "").toLowerCase();
+    return spaceFreeText;
+}
+
+// function removeTag(tagList, itemToRemove, delimiter) {
+//     var tagArr = null;
+//     if (tagList == null) {
+//         return;
+//     }
+//     tagArr = tagList.split(delimiter);
+//     tagArr.slice()
+// }
+//@param selectedItem (String) - the text of selected item
+//@param hiddenField (String) - hidden field storing
+//all the selected tags. ID or CLASS
+//@param add - values should true or false
+// @description - If item already exists in the hiddenField, 
+// then delete it. Otherwise add it to the list. 
+function updateHiddenField(selectedItem, hiddenField, add) {
+    var hiddenFieldSelector = $(hiddenField)
+    var selectedItemText = removeWhiteSpace(selectedItem);
+
+    //Converting it into array to use splice function to remove
+    //Why not just use substring? The white space can be confusing. 
+    var tagListArr = hiddenFieldSelector.val().split('|');
+    var index = tagListArr.length-1;
+    for (; index >= 0; index--) {
+        if (removeWhiteSpace(tagListArr[index]) == selectedItemText) {
+            break;
+        }
+    }
+
+    if (add) {
+        //Item doesn't exists. ADD
+        if (index < 0) {
+            tagListArr[tagListArr.length] = selectedItem;
+        } 
+    } else {
+        //Remove item
+        tagListArr.splice(index,1);
+    }
+
+    hiddenFieldSelector.val(tagListArr.join("|"));
 }

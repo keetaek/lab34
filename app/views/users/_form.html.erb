@@ -76,9 +76,14 @@
         <a href="javascript:void(0)" class="tag city_tag">San Diego, CA</a>
       <% end %>
     </div>
-    <div class="auto_suggest">
-        <input id="new_city_label" title="city, state" />
-    </div>
+    <!-- 
+      Adding City using auto suggest
+      TODO: Tagging should have its own controller.  
+    -->
+    <span class="auto_suggest">
+        <a href="javascript:void(0)" id="add_new_city">Add City</a>
+        <input id="new_city_label" title="city, state" class="text_field_height" />
+    </span>
     <div class="footer_navigation" id="footer_navigation_first_step" name="footer_navigation_first_step">
       <input class="next_button nav_button" type="submit" name="submit_first_next" id="submit_first_next" value="NEXT" />
     </div>
