@@ -1,17 +1,24 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :firstName, :lastName, :thumbnail, :city_list
+  attr_accessible :email, :password, :password_confirmation, 
+  :firstName, :lastName, :thumbnail, :city_list, :user_detail_attributes,
+  :pictures_attributes, :videos_attributes, :applications_attributes, :audition_admins;
   has_secure_password
 
   has_and_belongs_to_many :auditions
   has_one :user_detail
   has_many :audition_admins
   has_many :applications
-  has_many :media, :as => :media_resource #polymophic relationship
-  mount_uploader :thumbnail, ImageUploader #Thumbnail image
-
+  #has_many :media, :as => :media_resource #polymophic relationship
+  has_many :pictures, :dependent => :destroy
+  has_many :videos, :dependent => :destroy
+  mount_uploader :thumbnail, ThumbnailUploader #Thumbnail image
   validates_confirmation_of :password
   validates_presence_of :email, :password, :firstName, :lastName, :on => :create, :message => "Can't be blank"
   validates_uniqueness_of :email
+
+  #not sure if I want to allow destroy
+  accepts_nested_attributes_for :pictures, :allow_destroy => true
+  accepts_nested_attributes_for :videos, :allow_destroy => true
 
   acts_as_taggable
   acts_as_taggable_on :cities, :theaters, :movies, :dances, :musics #I know.. that is gramatically wrong

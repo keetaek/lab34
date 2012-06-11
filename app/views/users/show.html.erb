@@ -1,59 +1,120 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Thumbnail</b>
-  <%= image_tag @user.thumbnail_url(:thumb) %>
-</p>
-
-<p>
-  <b>email</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Name</b>
-  <%= @user.firstName %> <%= @user.lastName %> 
-</p>
-
-<p>
-  <b>type</b>
-  <%= @user.type %>
-</p>
-
-<p>
-  <b>IMDB URL</b>
-  <%= @user.imdbUrl %>
-</p>
-
-<p>
-  <b>Facebook ID</b>
-  <%= @user.facebookId %>
-</p>
-
-<p>
-  <b>Twitter ID</b>
-  <%= @user.twitterId %>
-</p>
-
-<p>
-  <b>LinkedIn URL</b>
-  <%= @user.linkedInUrl %>
-</p>
-
-<p>
-  <b>SelfBio</b>
-  <%= @user.selfBio %>
-</p>
+<article>
+  <header>
+    <h2>Basic info</h2>
+  </header>
+<% unless @user.thumbnail_url(:thumb).nil? %>
+  <p>
+    <b>Thumbnail</b>
+    <%= image_tag @user.thumbnail_url(:thumb) %>
+  </p>
+<% end %>
+<% unless @user.email.nil? %>
+  <p>
+    <b>email</b>
+    <%= @user.email %>
+  </p>
+<% end %>
+<% unless @user.firstName.nil? && @user.lastName.nil? %>
+  <p>
+    <b>Name</b>
+    <%= @user.firstName %> <%= @user.lastName %> 
+  </p>
+<% end %>
+<% unless @user.imdbUrl.nil? %>
+  <p>
+    <b>IMDB URL</b>
+    <%= @user.imdbUrl %>
+  </p>
+<% end %>
+<% unless @user.facebookId.nil? %>
+  <p>
+    <b>Facebook ID</b>
+    <%= @user.facebookId %>
+  </p>
+<% end %>
+<% unless @user.twitterId.nil? %>
+  <p>
+    <b>Twitter ID</b>
+    <%= @user.twitterId %>
+  </p>
+<% end %>
+<% unless @user.linkedInUrl.nil? %>
+  <p>
+    <b>LinkedIn URL</b>
+    <%= @user.linkedInUrl %>
+  </p>
+<% end %>
+<% unless @user.selfBio.nil? %>
+  <p>
+    <b>SelfBio</b>
+    <%= @user.selfBio %>
+  </p>
+<% end %>
 
 <p>
   <b>Cities</b>
   <% @city_tags.each do |city| %>
      <a class="tag city_tag"><%= city %></a>
-  <% end %>
-  <input id="city_suggest" name="city_suggest"/> 
-  <input id="city_suggest_jquery" name="city_suggest_jquery"/> 
-
+  <% end %> 
 </p>
+</article>
+<article>
+  <header>
+    <h2>Roles</h2>
+  </header>
+
+</article>
+<article>
+  <header>
+    <h2>Pictures</h2>
+  </header>
+    <% @user.pictures.each do |picture| %>
+      <%= image_tag picture.image.regular.url %>
+    <% end %>
+</article>
+<article>
+  <header>
+    <h2>Videos</h2>
+  </header>
+  <% first_video = @user.videos.first.panda_video.encodings['h264'] %>
+  <video src="<%= first_video.url %>" height="270" width="480" id="container" poster="<%= first_video.screenshots.first %>">
+  </video>
+
+  <% @user.videos.each do |video| %>
+    <% if video.panda_video.status == "success" %>
+      <%= image_tag video.panda_video.encodings['h264'].screenshots.first, :size => "120x120" %>
+    <% end %>
+    <!-- TODO implement -->
+  <% end %>
+</article>
+
+<%= javascript_include_tag 'jwplayer.js' %>
+
+<script type="text/javascript">
+    jwplayer("container").setup({
+      height: 270,
+      width: 480,
+      image: "<%= first_video.screenshots.first %>",
+      file: "<%= first_video.url %>",
+      playlist: [
+        <% @user.videos.each_with_index do |video, index| %>
+          <% if video.panda_video.status == "success" %>
+            <% encoded_h264 = video.panda_video.encodings['h264'] %>
+            { duration: <%= video.panda_video.duration / 1000 %>, file: "<%= encoded_h264.url %>", image: "<%= encoded_h264.screenshots.first %>" }
+            <% unless index == @user.videos.size - 1 %>,<% end %>
+          <% end %>
+        <% end %>
+        ],
+      "playlist.position": "right",
+      modes: [
+        { type: "html5" },
+        { type: "flash", src: "/jwplayer/player.swf" },
+        { type: "download" }
+      ]    
+    });
+</script>
+
 
 <%= link_to 'Edit', edit_audition_path(@audition) %> |
 <%= link_to 'Back', auditions_path %>

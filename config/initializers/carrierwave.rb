@@ -7,9 +7,9 @@ CarrierWave.configure do |config|
   }
   #TODO: the bucket name should be modified to be compliant with DNS rule. 
   #Get rid of underscore and replace with dots.
-  config.fog_directory  = 'lab34_bucket'                     # required
+  config.fog_directory  = 'lab34.pictures'                     # required
   #config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
-  #config.fog_public     = false                                   # optional, defaults to true
+  config.fog_public     = true                                   # optional, defaults to true
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
 end
 

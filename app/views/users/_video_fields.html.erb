@@ -1,0 +1,39 @@
+<div class="video">
+  <div class="fields">
+    <div class="field">
+      <%= f.label :title, "Title" %><br />
+      <%= f.text_field :title, :class => "text_field_height text_field_width" %><br />
+    </div>
+    <div class="field">
+      <%= f.label :description, "Description" %><br />
+      <%= f.text_area :description, :rows => 3 %>
+    </div>
+    <div class="field">
+      <%= f.label :private, "private?" %><br />
+      <%= f.check_box :private %>
+    </div>
+      <!-- the control will appear next to this, and the video ID will be stored here after the upload
+    <input type="hidden" name="video[panda_video_id]" id="returned_video_id" />
+     -->
+
+    <%= f.hidden_field :panda_video_id, :id => "returned_video_id" %>
+
+    <!-- upload progress bar (optional) -->
+    <div id="upload_progress" class="panda_upload_progress"></div>
+
+    <%= link_to_remove_fields "remove_video", ".video", f %><br />
+  </div>
+</div>
+
+<script>
+  <% auth_params = Panda.signed_params('post', "/videos.json", {:profiles => "h264,ogg"}) %>
+  jQuery("#returned_video_id").pandaUploader(<%=raw auth_params.to_json %>, {
+    // Uncomment the line below if your account is in the EU
+    // api_host: 'api-eu.pandastream.com',
+    upload_progress_id: 'upload_progress',
+    upload_strategy: new PandaUploader.UploadOnSelect()
+    // upload_strategy: new PandaUploader.UploadOnSubmit({
+    //   disable_submit_button: false
+    // })  
+  });
+</script>

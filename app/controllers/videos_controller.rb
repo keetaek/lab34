@@ -12,6 +12,7 @@ class VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @panda_video = @video.panda_video
+    debugger
     @h264_encoding = find_h264_encoding(@panda_video)
     @ogg_encoding = find_ogg_encoding(@panda_video)
 

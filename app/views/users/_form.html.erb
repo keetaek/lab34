@@ -10,7 +10,7 @@
     </li>
     <li id="step_three">
       Step 3
-      <span>Uploads</span>
+      <span>Upload</span>
     </li>
   </ul>
 <%= form_for @user, :html => {:multipart => true} do |f| %>
@@ -92,7 +92,12 @@
   
   <!-- Second Step: Roles -->  
   <div id="second_step" class="step_form">
-    <h1>Roles</h1>
+    <h1>Role</h1>
+    <h2>Field</h2>
+    <h2>Theater</h2>
+    <h2>Movie</h2>
+    <h2>Dance</h2>
+    <h2>Music</h2>
       <!-- TODO: Placeholder for tagging feature-->
     <div class="footer_navigation" id="footer_navigation_second_step" name="footer_navigation_second_step">
       <input type="submit" name="submit_second_back" id="submit_second_back" class="back_button nav_button" value="BACK" />
@@ -100,12 +105,27 @@
     </div>
   </div><!-- second_step-->
   
+
+<%= javascript_include_tag 'http://cdn.pandastream.com/u/1.4/jquery.panda-uploader.min.js' %>
+
+<%= javascript_include_tag 'jwplayer.js' %>
+
   
   <!-- Third Step: Uploads -->  
   <div id="third_step" class="step_form">
-    <h1>Uploads</h1>
+    <h1>Upload</h1>
       <h2>Placeholder for picture upload</h2>
-      <h2>Placeholder for video upload: Ideally this should kick off video upload pipeline instead of uploading them on this page</h2>
+      <%= f.fields_for :pictures do |builder| %>
+        <%= render "picture_fields", :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Add More Picture", f, :pictures %></p>
+      
+      <h2>Placeholder for Video upload</h2>
+      <%= f.fields_for :videos do |builder| %> 
+        <%= render "video_fields", :f => builder %>
+      <% end %>      
+      <p><%= link_to_add_fields "Add More Video", f, :videos %></p>
+
     <div class="footer_navigation" id="footer_navigation_third_step" name="footer_navigation_third_step">
       <input class="back_button nav_button" type="submit" name="submit_third_back" id="submit_third_back" value="BACK" />
       <input class="next_button nav_button" type="submit" name="submit_third_next" id="submit_third_next" value="SUBMIT" />
@@ -114,4 +134,3 @@
  
 <% end %>
 </div><!-- end of user_container-->
-

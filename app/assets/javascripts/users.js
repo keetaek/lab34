@@ -38,6 +38,7 @@ $(function() {
             var selectedCity = ui.item.value;
             var existingTag = doesTagExist(selectedCity, "city_tag")
             if (existingTag != null) {
+                //addClass checks for existing classes before adding
                 existingTag.addClass('tag_selected');//Changing Color
             } else {
                 //Adding new tag
@@ -104,16 +105,16 @@ $(function(){
         var error = 0;
         //TODO: Hidden field shouldn't be affected by the validation.
         //TODO Add validation
-        fields.each(function(){
-            var value = $(this).val();
-            if( value.length < 4 ) {
-                $(this).addClass('error');
-                $(this).effect("shake", { times:3 }, 50);
-                error++;
-            } else {
-                $(this).addClass('valid');
-            }
-        });
+        // fields.each(function(){
+        //     var value = $(this).val();
+        //     if( value.length < 4 ) {
+        //         $(this).addClass('error');
+        //         $(this).effect("shake", { times:3 }, 50);
+        //         error++;
+        //     } else {
+        //         $(this).addClass('valid');
+        //     }
+        // });
 
 
         if(!error) {
@@ -126,24 +127,25 @@ $(function(){
         } else return false;
     });
 
+    //TODO: Error validation is not happening
     $('#submit_third_next').click(function(e){
         e.preventDefault();//hijack the submit function
 
-        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         var fields = $('#third_step input[type=text]');
         var error = 0;
         fields.each(function(){
-            var value = $(this).val();
-            //TODO: Use JQuery Validator plugin to check confirm field is same
-            if( value.length<1  && !emailPattern.test(value))  {
-                $(this).addClass('error');
-                $(this).effect("shake", { times:3 }, 50);
+            // var value = $(this).val();
+            // if( value.length<1  && !emailPattern.test(value))  {
+            //     $(this).addClass('error');
+            //     $(this).effect("shake", { times:3 }, 50);
 
-                error++;
-            } else {
-                $(this).addClass('valid');
-            }
+            //     error++;
+            // } else {
+            //     $(this).addClass('valid');
+            // }
         });
+
+
         if(!error) { 
             $('.edit_user').submit();
         } else return false;

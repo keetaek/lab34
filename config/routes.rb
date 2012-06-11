@@ -31,11 +31,15 @@ Lab34::Application.routes.draw do
   get 'logout' => "sessions#destroy", :as => 'logout'
 
   match 'users/:id/profile' => 'users#show'
-  
+
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "auditions#new"
 
-  resources :users
+  resources :users do
+    resources :videos
+    resources :pictures
+    resources :applications
+  end
 
   resources :sessions
 

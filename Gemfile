@@ -31,7 +31,7 @@ gem 'panda', '1.5.0'
 gem 'jquery-rails'
 
 gem 'carrierwave'
-gem 'fog'
+gem 'fog', '~> 1.3.1'
 gem 'rmagick'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'split', require: 'split/dashboard'
