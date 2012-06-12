@@ -1,7 +1,6 @@
 module MediaResource
   def acts_as_media
     include InstanceMethods
-    
     has_one :medium, :as => :media_resource, :autosave => true, :dependent => :destroy
     alias_method_chain :medium, :build
     

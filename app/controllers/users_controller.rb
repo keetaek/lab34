@@ -37,7 +37,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      finished("signup_title")
+      # This is part of the gem "Split" for AB testing
+      # finished("signup_title")
       redirect_to login_path, :notice => "Signed up!"
     else
       render "new"

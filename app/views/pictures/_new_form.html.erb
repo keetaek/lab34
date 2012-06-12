@@ -1,0 +1,11 @@
+<%= form_for Picture.new,:url => polymorphic_path([parent, Picture]), :html => { :multipart => true } do |f| %>
+  
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

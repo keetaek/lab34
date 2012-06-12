@@ -34,6 +34,7 @@ gem 'carrierwave'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'
 gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'inherited_resources' #For nested resources
 gem 'split', require: 'split/dashboard'
 # Use unicorn as the web server
 # gem 'unicorn'

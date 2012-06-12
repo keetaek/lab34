@@ -1,5 +1,13 @@
 Lab34::Application.routes.draw do
   
+  resources :users do
+    resources :videos
+    # resources :pictures, :only => [:index, :create, :destroy]
+    resources :pictures
+    resources :applications
+  end
+
+
   resources :user_details
 
   resources :audition_admins
@@ -35,12 +43,7 @@ Lab34::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "auditions#new"
 
-  resources :users do
-    resources :videos
-    resources :pictures
-    resources :applications
-  end
-
+  
   resources :sessions
 
   mount Split::Dashboard, at: 'split'
