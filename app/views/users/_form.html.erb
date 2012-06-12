@@ -64,6 +64,7 @@
     <div class="field" id="city_tags">
       <%= f.label :city_list, "City Tags (Test)" %><br />
       <%= f.text_field :city_list, :class => "text_field_height text_field_width" %>
+      <% debugger %>
       <% if @city_tags.length > MINIMUM_NUMBER_OF_TAGS  %>
         <% @city_tags.take(MINIMUM_NUMBER_OF_TAGS).each do |city| %>
           <a class="tag city_tag"><%= city %></a>
@@ -107,13 +108,12 @@
   
 
 <%= javascript_include_tag 'http://cdn.pandastream.com/u/1.4/jquery.panda-uploader.min.js' %>
-
-<%= javascript_include_tag 'jwplayer.js' %>
-
   
   <!-- Third Step: Uploads -->  
   <div id="third_step" class="step_form">
-    <h1>Upload</h1>
+    <h1>Placeholder</h1>
+ <!--    
+      <h1>Upload</h1>
       <h2>Placeholder for picture upload</h2>
       <%= f.fields_for :pictures do |builder| %>
         <%= render "picture_fields", :f => builder %>
@@ -125,7 +125,7 @@
         <%= render "video_fields", :f => builder %>
       <% end %>      
       <p><%= link_to_add_fields "Add More Video", f, :videos %></p>
-
+ -->
     <div class="footer_navigation" id="footer_navigation_third_step" name="footer_navigation_third_step">
       <input class="back_button nav_button" type="submit" name="submit_third_back" id="submit_third_back" value="BACK" />
       <input class="next_button nav_button" type="submit" name="submit_third_next" id="submit_third_next" value="SUBMIT" />

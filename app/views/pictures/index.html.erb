@@ -17,6 +17,13 @@
   </tr>
 <% end %>
 </table>
+<ul>
+  <% @pictures.each do |picture| %>
+    <li>
+      <%= image_tag picture.image.regular.url, :size => "120x120" %>
+    </li>
+  <% end %>
+</ul>
 
 <br />
 

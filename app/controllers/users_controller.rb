@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @city_tags = User.tag_counts_on(:cities)
+    @city_tags ||= Array.new
   end
 
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @city_tags = User.tag_counts_on(:cities)
-    debugger
+    @city_tags ||= Array.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

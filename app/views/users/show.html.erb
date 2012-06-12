@@ -72,21 +72,27 @@
     <% @user.pictures.each do |picture| %>
       <%= image_tag picture.image.regular.url %>
     <% end %>
+    <%= link_to "Picture Manager", user_pictures_path(@user) %>
 </article>
 <article>
   <header>
     <h2>Videos</h2>
   </header>
   <% first_video = @user.videos.first.panda_video.encodings['h264'] %>
+  <%= link_to "Video Manager", user_videos_path(@user) %>
   <video src="<%= first_video.url %>" height="270" width="480" id="container" poster="<%= first_video.screenshots.first %>">
   </video>
-
-  <% @user.videos.each do |video| %>
-    <% if video.panda_video.status == "success" %>
-      <%= image_tag video.panda_video.encodings['h264'].screenshots.first, :size => "120x120" %>
+  <ul>
+    <% @user.videos.each do |video| %>
+      <% if video.panda_video.status == "success" %>
+        <li>
+          <%= image_tag video.panda_video.encodings['h264'].screenshots.first, :size => "120x120" %><br />
+          <span><%= video.title %></span>
+        </li>
+      <% end %>
+      <!-- TODO implement -->
     <% end %>
-    <!-- TODO implement -->
-  <% end %>
+  </ul>
 </article>
 
 <%= javascript_include_tag 'jwplayer.js' %>
