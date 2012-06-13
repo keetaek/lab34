@@ -5,24 +5,6 @@
 <p>Here's the raw Panda information:</p>
 
 <% if @video.panda_video.status == "success" %>
-  
-  <p>DEBUG: <%= @video.panda_video.encodings['h264'] %></p>
-  <div id="container">Loading the player...</div>
-  
-  <script type="text/javascript">
-  jwplayer("container").setup({
-    height: 270,
-    width: 480,
-    image: "<%= @h264_encoding.screenshots.first %>",
-    levels: [
-      { file: "<%= @h264_encoding.url %>" }
-    ],
-    modes: [
-      { type: "html5" },
-      { type: "flash", src: "/jwplayer/player.swf" },
-      { type: "download" }
-    ]
-  });
-  </script>
+    <%= render :partial => "video_player", :locals => { :videos => [@video] } %>
 
 <% end %>

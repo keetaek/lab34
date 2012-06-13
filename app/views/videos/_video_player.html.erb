@@ -1,6 +1,5 @@
 <% first_video = videos.first.panda_video.encodings['h264'] %>
 
-<%= link_to "Video Manager", user_videos_path(@user) %>
 <video src="<%= first_video.url %>" height="270" width="480" id="video_player" poster="<%= first_video.screenshots.first %>">
 </video>
 

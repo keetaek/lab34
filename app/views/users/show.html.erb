@@ -76,7 +76,7 @@
   <header>
     <h2>Videos</h2>
   </header>
-    <%= render :partial => "videos/list_video", :locals => { :videos => @videos, :parent => @user } %>
+    <%= render :partial => "videos/list_video", :locals => { :videos => @user.videos, :parent => @user } %>
 </article>
 
 <%= link_to 'Edit', edit_audition_path(@audition) %> |

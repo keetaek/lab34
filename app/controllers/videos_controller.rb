@@ -6,13 +6,6 @@
 class VideosController < InheritedResources::Base
   belongs_to :user, :polymorphic => true, :optional => true
   
-  def show
-    @video = Video.find(params[:id])
-    @panda_video = @video.panda_video
-    @h264_encoding = find_h264_encoding(@panda_video)
-    @ogg_encoding = find_ogg_encoding(@panda_video)
-  end
-  
   #Redirect to the collection path (or index path) after creation
   def create
     create! do |format|
