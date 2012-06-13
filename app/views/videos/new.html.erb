@@ -1,28 +1,3 @@
 <h1>New video</h1>
 
-<%= form_for @video do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-
-  <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
-  <input type="hidden" name="video[panda_video_id]" id="returned_video_id" />
-
-  <!-- upload progress bar (optional) -->
-  <div id="upload_progress" class="panda_upload_progress"></div>
-    
-
-  <%= f.submit "Upload video" %>
-<% end %>
-
-<%= javascript_include_tag 'http://cdn.pandastream.com/u/1.4/jquery.panda-uploader.min.js' %>
-
-<script>
-  <% auth_params = Panda.signed_params('post', "/videos.json", {:profiles => "h264,ogg"}) %>
-    $("#returned_video_id").pandaUploader(<%=raw auth_params.to_json %>, {
-    // Uncomment the line below if your account is in the EU
-    // api_host: 'api-eu.pandastream.com',
-    upload_progress_id: 'upload_progress'
-  });
-</script>
+<%= render :partial => "video_upload_form", :locals => { :parent => parent } %>

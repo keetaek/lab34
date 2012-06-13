@@ -1,30 +1,3 @@
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Panda video</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @videos.each do |video| %>
-  <tr>
-    <td><%= video.title %></td>
-    <td><%= video.panda_video_id %></td>
-    <td><%= link_to 'Show', video %></td>
-    <td><%= link_to 'Edit', edit_video_path(video) %></td>
-    <td><%= link_to 'Destroy', video, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<h2>Video Upload Form</h2>
-
-<%= render :partial => "video_upload_form", :locals => { :videos => @videos, :parent => parent } %>
-
 <h2>Listing Videos</h2>
 
 <% if !@videos.empty? %>
@@ -32,6 +5,7 @@
   <%= render :partial => "video_player", :locals => { :videos => @videos } %>
   <h3>Video List</h3>
   <%= render :partial => "list_video", :locals => { :videos => @videos, :parent => parent } %>
+<% else %>
+  <%= link_to 'New Video', new_polymorphic_path([parent, Video]) %>
 <% end %>
 
-<%= link_to 'New Video', new_video_path %>
