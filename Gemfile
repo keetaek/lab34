@@ -25,7 +25,6 @@ end
 # gemfile
 #http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development
 gem 'pg', :group => :production
-
 gem 'panda', '1.5.0'
 
 gem 'jquery-rails'

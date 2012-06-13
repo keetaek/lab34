@@ -1,10 +1,12 @@
 class Video < ActiveRecord::Base
-  extend MediaResource
-  acts_as_media
+  # Removing MTI (Multi Table inheritance), for simpler structure
+  # extend MediaResource
+  # acts_as_media
+
   #Panda also provides a Panda::Video, but we wrap it in our own ActiveRecord
   #class in order to get local storage, and so that we can add our own
   #associations and metadata.
-  
+  attr_accessible :title, :description, :private, :panda_video_id
   validates_presence_of :panda_video_id
   belongs_to :user
   has_and_belongs_to_many :applications

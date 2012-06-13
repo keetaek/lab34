@@ -156,6 +156,9 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
   end
 
   create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "private"
     t.string   "panda_video_id"
     t.integer  "user_id"
     t.datetime "created_at"

@@ -1,3 +1,6 @@
+<!--
+  This form is used to only create NEW Picture. Unlike _form.html.erb, it doesn't display previously populated contents. Thus this should not be used in edit action
+-->
 <%= form_for Picture.new,:url => polymorphic_path([parent, Picture]), :html => { :multipart => true } do |f| %>
   
   <div class="field">

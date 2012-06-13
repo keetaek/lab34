@@ -1,3 +1,6 @@
+<!--
+This is used for new and edit action. It expects @picture to be initialized before in controller
+-->
 <%= form_for @picture, :html => {:multipart => true} do |f| %>
 
   <% if @picture.errors.any? %>
