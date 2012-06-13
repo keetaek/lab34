@@ -1,5 +1,5 @@
 <!-- Displaying videos-->
-<% if !videos.nil? %> 
+<% if !videos.nil? && !videos.empty? %> 
 	<ul>
 		<% videos.each do |video| %>
 	    	<% if video.panda_video.status == "success" %>
@@ -10,6 +10,8 @@
 			      <br />
 			    </li>
 	  		<% end %>
+	  		<%= link_to "See more videos", polymorphic_path([parent, Video]) %>
+
 	  	<% end %>
 	</ul>
 <% else %>

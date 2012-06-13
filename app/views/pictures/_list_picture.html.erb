@@ -1,5 +1,5 @@
 <!-- Displaying pictures--> 
-<% if !pictures.nil? %> 
+<% if !pictures.nil? && !pictures.empty? %> 
 	<ul>
 	  <% pictures.each do |picture| %>
 	    <li>
@@ -7,6 +7,7 @@
 	    </li>
 	  <% end %>
 	</ul>
+	<%= link_to "See more pictures", polymorphic_path([parent, Picture]) %>
 <% else %>
 	<%= link_to "Add Picture", new_polymorphic_path([parent, Picture]) %>
 <% end %>

@@ -2,8 +2,6 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>Here's the raw Panda information:</p>
-
 <% if @video.panda_video.status == "success" %>
     <%= render :partial => "video_player", :locals => { :videos => [@video] } %>
 
