@@ -1,0 +1,12 @@
+<!-- Displaying pictures--> 
+<% if !pictures.nil? && !pictures.empty? %> 
+	<ul>
+	  <% pictures.each do |picture| %>
+	    <li>
+	    	<%=link_to(image_tag(picture.image.regular.url, :size => image_size), polymorphic_path([parent, picture])) %>
+	    </li>
+	  <% end %>
+	</ul>
+<% else %>
+	<%= link_to "Add Picture", new_polymorphic_path([parent, Picture]) %>
+<% end %>

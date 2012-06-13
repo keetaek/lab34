@@ -1,16 +1,19 @@
-<!-- Displaying videos--> 
-<ul>
-	<% videos.each do |video| %>
-    	<% if video.panda_video.status == "success" %>
-	    	<li>
-		    	<!-- Assumed to be using encoding h264 for now -->
-		    	<% debugger %>
-		    	<%=link_to(image_tag(video.panda_video.encodings['h264'].screenshots.first, :size => "120x120"), polymorphic_path([parent, video])) %>
+<!-- Displaying videos-->
+<% if !videos.nil? && !videos.empty? %> 
+	<ul>
+		<% videos.each do |video| %>
+	    	<% if video.panda_video.status == "success" %>
+		    	<li>
+			    	<!-- Assumed to be using encoding h264 for now -->
+			    	<%=link_to(image_tag(video.panda_video.encodings['h264'].screenshots.first, :size => "120x120"), polymorphic_path([parent, video])) %>
 
-		      <br />
-		    </li>
-  		<% end %>
-  	<% end %>
-</ul>
+			      <br />
+			    </li>
+	  		<% end %>
+	  	<% end %>
+	</ul>
+<% else %>
+	<%= link_to "Add Video", new_polymorphic_path([parent, Video]) %>
+<% end %>
 
 

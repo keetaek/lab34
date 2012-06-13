@@ -69,58 +69,15 @@
   <header>
     <h2>Pictures</h2>
   </header>
-    <% @user.pictures.each do |picture| %>
-      <%= image_tag picture.image.regular.url %>
-    <% end %>
-    <%= link_to "Picture Manager", user_pictures_path(@user) %>
+  <%= render :partial => 'pictures/list_picture', :locals => { :pictures => @user.pictures, :image_size => "120x120", :parent => @user } %>
+  <%= link_to "See more pictures", user_pictures_path(@user) %>
 </article>
 <article>
   <header>
     <h2>Videos</h2>
   </header>
-  <% first_video = @user.videos.first.panda_video.encodings['h264'] %>
-  <%= link_to "Video Manager", user_videos_path(@user) %>
-  <video src="<%= first_video.url %>" height="270" width="480" id="container" poster="<%= first_video.screenshots.first %>">
-  </video>
-  <ul>
-    <% @user.videos.each do |video| %>
-      <% if video.panda_video.status == "success" %>
-        <li>
-          <%= image_tag video.panda_video.encodings['h264'].screenshots.first, :size => "120x120" %><br />
-          <span><%= video.title %></span>
-        </li>
-      <% end %>
-      <!-- TODO implement -->
-    <% end %>
-  </ul>
+    <%= render :partial => "videos/list_video", :locals => { :videos => @videos, :parent => @user } %>
 </article>
-
-<%= javascript_include_tag 'jwplayer.js' %>
-
-<script type="text/javascript">
-    jwplayer("container").setup({
-      height: 270,
-      width: 480,
-      image: "<%= first_video.screenshots.first %>",
-      file: "<%= first_video.url %>",
-      playlist: [
-        <% @user.videos.each_with_index do |video, index| %>
-          <% if video.panda_video.status == "success" %>
-            <% encoded_h264 = video.panda_video.encodings['h264'] %>
-            { duration: <%= video.panda_video.duration / 1000 %>, file: "<%= encoded_h264.url %>", image: "<%= encoded_h264.screenshots.first %>" }
-            <% unless index == @user.videos.size - 1 %>,<% end %>
-          <% end %>
-        <% end %>
-        ],
-      "playlist.position": "right",
-      modes: [
-        { type: "html5" },
-        { type: "flash", src: "/jwplayer/player.swf" },
-        { type: "download" }
-      ]    
-    });
-</script>
-
 
 <%= link_to 'Edit', edit_audition_path(@audition) %> |
 <%= link_to 'Back', auditions_path %>

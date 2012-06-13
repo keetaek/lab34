@@ -1,5 +1,4 @@
 <h2>Listing Videos</h2>
-
 <% if !@videos.empty? %>
   <h3>Video Player</h3>
   <%= render :partial => "video_player", :locals => { :videos => @videos } %>
