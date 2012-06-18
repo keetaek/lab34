@@ -5,27 +5,22 @@
 # /users/1/pictures/2 
 class PicturesController < InheritedResources::Base
   belongs_to :user,:application, :polymorphic => true, :optional => true
+
+  # Commented out in favor of jquery version
+  # def create
+  #   create! do |format|
+  #     format.html { redirect_to collection_url }
+  #   end
+  # end
+
+  # def smart_create
   def create
-    create! do |format|
-      format.html { redirect_to collection_url }
-    end
-  end
-
-  #Prototyping upload
-  def smart_new
-  	@picture = Picture.new
-  	respond_to do |format|
-  		format.html
-  		format.json { render json: @picture }
-  	end
-  end
-
-  def smart_create
     create! do |success, failure|
         success.html {  
-          render :json => [@picture.to_jq_upload].to_json, 
-          :content_type => 'text/html',
-          :layout => false
+          # render :json => [@picture.to_jq_upload].to_json, 
+          # :content_type => 'text/html',
+          # :layout => false
+          redirect_to collection_url
         }
         success.json {
           render :json => [@picture.to_jq_upload].to_json

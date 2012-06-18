@@ -1,3 +1,3 @@
 class RoleQuestion < ActiveRecord::Base
-  belongs_to :application
+  belongs_to :role
 end

@@ -1,0 +1,13 @@
+<!-- Displaying roles--> 
+<% if !questions.nil? && !questions.empty? %> 
+  <% questions.each do |question| %>
+  	<p>
+  		<%= question.question %>
+  	</p>  
+  <% end %>
+  <%= f.label :answers %>
+  <%= f.text_field :answers %>
+  <br />
+<% else %>
+	<p>No questions found</p>
+<% end %>

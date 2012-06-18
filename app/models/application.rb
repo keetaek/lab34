@@ -1,5 +1,5 @@
 class Application < ActiveRecord::Base
-  attr_accessible :pictures_attributes, :videos_attributes, :application_question_answers_attributes
+  attr_accessible :pictures_attributes, :videos_attributes, :application_question_answers_attributes, :answers
   belongs_to :user
   belongs_to :role
   # Media field has been deprecated

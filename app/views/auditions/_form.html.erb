@@ -13,7 +13,7 @@
       <span>Admin</span>
     </li>
   </ul>
-<%= form_for @audition, :html => {:multipart => true} do |f| %>
+<%= form_for @audition, :html => {:multipart => true, :class => 'form-inline' } do |f| %>
   <% if @audition.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@audition.errors.count, "error") %> prohibited this audition from being saved:</h2>

@@ -19,13 +19,11 @@
 <% @auditions.each do |audition| %>
   <tr>
     <td><%= audition.title %></td>
-    <td><%= audition.type %></td>
+    <td><%= audition.audition_type %></td>
     <td><%= audition.logo %></td>
     <td><%= audition.description %></td>
     <td><%= audition.status %></td>
-    <td><%= audition.expiration_date %></td>
-    <td><%= audition.job_start_date %></td>
-    <td><%= audition.job_end_date %></td>
+    <td><%= audition.deadline_date %></td>
     <td><%= audition.zip %></td>
     <td><%= link_to 'Show', audition %></td>
     <td><%= link_to 'Edit', edit_audition_path(audition) %></td>

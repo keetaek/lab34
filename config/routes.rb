@@ -4,10 +4,10 @@ Lab34::Application.routes.draw do
     resources :videos
     # resources :pictures, :only => [:index, :create, :destroy]
     resources :pictures do
-      collection do
-        get "smart_new"
-        post "smart_create"
-      end
+      # collection do
+      #   get "smart_new"
+      #   post "smart_create"
+      # end
     end
     resources :applications
   end

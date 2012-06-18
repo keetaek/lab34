@@ -10,9 +10,9 @@
       </ul>
     </div>
   <% end %>
-
-
-  
+  <% debugger %>
+  <% questions = @application.role.role_questions %>
+  <%= render :partial => "list_role_question", :locals => { :questions => questions, :f => f } %>
 
   <div class="actions">
     <%= f.submit %>

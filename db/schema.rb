@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
   create_table "applications", :force => true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
+    t.text     "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
