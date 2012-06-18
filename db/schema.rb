@@ -83,8 +83,11 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
   end
 
   create_table "pictures", :force => true do |t|
+    t.string   "title"
+    t.boolean  "private"
     t.string   "image"
     t.integer  "user_id"
+    t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -161,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.boolean  "private"
     t.string   "panda_video_id"
     t.integer  "user_id"
+    t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

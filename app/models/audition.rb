@@ -1,5 +1,5 @@
 class Audition < ActiveRecord::Base
-  attr_accessible :title, :audition_type, :logo, :description, :status, :deadline_date, :zip
+  attr_accessible :title, :audition_type, :logo, :description, :status, :deadline_date, :zip, :roles_attributes, :audition_admin_attributes, :users_attributes
   
   has_and_belongs_to_many :users
   has_many :roles, :dependent => :destroy

@@ -6,6 +6,7 @@ class CreateVideos < ActiveRecord::Migration
       t.boolean :private
       t.string :panda_video_id
       t.integer :user_id
+      t.integer :application_id
       t.timestamps
     end
   end

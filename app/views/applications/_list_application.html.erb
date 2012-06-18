@@ -1,0 +1,13 @@
+<div>
+	<% if !applications.nil? && !applications.empty? %>
+		<% applications.each do |application| %>
+			<% user = application.user %>
+			<a href="<%= polymorphic_path([application.role, application])%>">
+				Name : <%= user.firstName %>
+				<%= image_tag(user.pictures.first, :size => "120x120") %>
+			</a>
+		<% end %>
+	<% else %>
+		DEBUG: NO Applicants so far
+	<% end %>
+</div>

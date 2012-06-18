@@ -3,7 +3,12 @@ Lab34::Application.routes.draw do
   resources :users do
     resources :videos
     # resources :pictures, :only => [:index, :create, :destroy]
-    resources :pictures
+    resources :pictures do
+      collection do
+        get "smart_new"
+        post "smart_create"
+      end
+    end
     resources :applications
   end
 
@@ -22,11 +27,21 @@ Lab34::Application.routes.draw do
 
   resources :application_media
 
-  resources :applications
+  resources :applications do
+    resources :videos
+    resources :pictures
+    resources :application_question_answers
 
-  resources :roles
+  end
 
-  resources :auditions
+  resources :roles do 
+    resources :applications do
+    end
+  end
+
+  resources :auditions do 
+    resources :roles
+  end
 
   resources :videos
   

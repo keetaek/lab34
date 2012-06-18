@@ -4,7 +4,7 @@
 # 2. Manage polymorphic belongs_to relation which manages path like
 # /users/1/videos/2 
 class VideosController < InheritedResources::Base
-  belongs_to :user, :polymorphic => true, :optional => true
+  belongs_to :user, :application, :polymorphic => true, :optional => true
   
   #Redirect to the collection path (or index path) after creation
   def create

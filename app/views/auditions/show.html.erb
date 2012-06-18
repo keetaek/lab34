@@ -1,35 +1,65 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @audition.title %>
-</p>
+<article id="audition_basic_info">
+  <header>
+  </header>
+  <p>
+    <b>Title:</b>
+    <%= @audition.title %>
+  </p>
 
-<p>
-  <b>Type:</b>
-  <%= @audition.audition_type %>
-</p>
+  <p>
+    <b>Type:</b>
+    <%= @audition.audition_type %>
+  </p>
 
-<p>
-  <b>Logo:</b>
-  <%= @audition.logo %>
-</p>
+  <p>
+    <b>Logo:</b>
+    <%= @audition.logo %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= @audition.description %>
-</p>
+  <p>
+    <b>Deadline Date:</b>
+    <%= @audition.deadline_date %>
+  </p>
 
-<p>
-  <b>Status:</b>
-  <%= @audition.status %>
-</p>
+  <p>
+    <b>Description:</b>
+    <%= @audition.description %>
+  </p>
 
-<p>
-  <b>Zip:</b>
-  <%= @audition.zip %>
-</p>
+  <p>
+    <b>Status:</b>
+    <%= @audition.status %>
+  </p>
 
+  <p>
+    <b>Zip:</b>
+    <%= @audition.zip %>
+  </p>
+</article>
+<article id="audition_roles">
+  <header>
+    <h2>Roles</h2>
+  </header>
+  <% if !@audition.roles.nil? && !@audition.roles.empty? %>
+    <% @audition.roles.each do |role| %>
+      <%= render :partial => "roles/role_show", :locals => { :role => role } %>
+      <%= link_to "Apply Now", new_polymorphic_path([role, Application])%>
+    <% end %>
+  <% end %>
+</article>
+<article id="role_applicants">
+  <header>
+    <h2>Applicants</h2>
+    <% if !@audition.roles.nil? && !@audition.roles.empty? %>
+      <% @audition.roles.each do |role| %>
+        <h4><%= role.title %></h4>
+        <%= render :partial => "applications/list_application", :locals => { :applications => role.applications } %>
+      <% end %>    
+    <% end %>
+  </header>
+</article>
 
 <%= link_to 'Edit', edit_audition_path(@audition) %> |
 <%= link_to 'Back', auditions_path %>

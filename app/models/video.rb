@@ -8,8 +8,9 @@ class Video < ActiveRecord::Base
   #associations and metadata.
   attr_accessible :title, :description, :private, :panda_video_id
   validates_presence_of :panda_video_id
-  belongs_to :user
-  has_and_belongs_to_many :applications
+  belongs_to :videoable, :polymorphic => true
+  # belongs_to :user
+  # has_and_belongs_to_many :applications
   #Provide access to the wrapped object
   def panda_video
     @panda_video ||= Panda::Video.find(panda_video_id)
