@@ -2,7 +2,11 @@
 
 <%= form_for Video.new, :url => polymorphic_path([parent, Video]),:html => {:multipart => true} do |f| %>
 
-  <div class="video">
+  <%= f.fields_for :roles do |builder| %>
+    <%= render "video_fields", :f => builder %>
+  <% end %>
+
+<!--   <div class="video">
     <div class="fields">
       <div class="field">
         <%= f.label :title, "Title" %><br />
@@ -15,19 +19,19 @@
       <div class="field">
         <%= f.label :private, "private?" %><br />
         <%= f.check_box :private %>
-      </div>
+      </div> -->
         <!-- the control will appear next to this, and the video ID will be stored here after the upload
       <input type="hidden" name="video[panda_video_id]" id="returned_video_id" />
        -->
-
-      <%= f.hidden_field :panda_video_id, :id => "returned_video_id" %>
+<!-- 
+      <%= f.hidden_field :panda_video_id, :id => "returned_video_id" %> -->
 
       <!-- upload progress bar (optional) -->
-      <div id="upload_progress" class="panda_upload_progress"></div>
+<!--       <div id="upload_progress" class="panda_upload_progress"></div>
 
 
     </div>
-  </div>
+  </div> -->
   <div class="actions">
     <%= f.submit %>
   </div>

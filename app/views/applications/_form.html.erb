@@ -10,9 +10,13 @@
       </ul>
     </div>
   <% end %>
-  <% debugger %>
   <% questions = @application.role.role_questions %>
   <%= render :partial => "list_role_question", :locals => { :questions => questions, :f => f } %>
+
+  <h2>Upload Video</h2>
+  <%= f.fields_for :videos do |builder| %>
+    <%= render "videos/video_fields", :f => builder %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
