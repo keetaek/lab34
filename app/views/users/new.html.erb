@@ -1,6 +1,6 @@
 
 <h2>Sign up</h2>
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { :class => "span6" } do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -11,25 +11,22 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+  <div class="row-fluid">
+    <%= f.label :email, :class => "" %>
+    <%= f.email_field :email, :class => "span12", :placeholder => "Your email" %>
   </div>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :firstName %>
+  <div class="row-fluid controls controls-row">
+    <%= f.label "Name" %>
+    <%= f.text_field :firstName, :class => "span6", :placeholder => "First Name" %>
+    <%= f.text_field :lastName, :class => "span6", :placeholder => "Last Name" %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :lastName %>
+  <div class="row-fluid">
+    <%= f.label :password %>
+    <%= f.password_field :password, :class => "span12" %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+  <div class="row-fluid">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => "span12" %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
+  <div class="actions pull-right"><%= f.submit %></div>
 <% end %>

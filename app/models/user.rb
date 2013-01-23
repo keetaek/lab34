@@ -12,9 +12,13 @@ class User < ActiveRecord::Base
   has_many :pictures, :dependent => :destroy
   has_many :videos, :dependent => :destroy
   mount_uploader :thumbnail, ThumbnailUploader #Thumbnail image
-  validates_confirmation_of :password
-  validates_presence_of :email, :password, :firstName, :lastName, :on => :create, :message => "Can't be blank"
-  validates_uniqueness_of :email
+
+  # From the registration page
+  validates_presence_of :email, :password, :firstName, :lastName, :on => :create, :message => "The field cannot be blank"
+  validates :password, :length => { :minimum => 6, :message => "Minimum 6 characters" }, :confirmation => true, :on => :create
+  validate :email, :uniqueness => { :case_sensitive => false, :message => "not unique" },
+    :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "Please provide correct email format"},
+    :on => :create
 
   #not sure if I want to allow destroy
   accepts_nested_attributes_for :pictures, :allow_destroy => true

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Lab34</title>
-  <%= javascript_include_tag "application", :debug => true %>
-  <%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js' %>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Lab34" %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= javascript_include_tag "application", :debug => true %>
+    <%= javascript_include_tag 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js' %>
 
-  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
-  <%= csrf_meta_tags %>
-  <!--Rails.js file? -->
-</head>
-<body>
-  <div id="container">
+    <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
+    <%= csrf_meta_tags %>
+    <!--Rails.js file? -->
+  </head>
+  <body>
     <header>
       <div id="topHeader">
         <h1>ODtion.com</h1>
@@ -27,61 +28,45 @@
           <% end %>
         </div>
       </div>
-      <nav class="navbar">
+
+      <!-- Navbar -->
+      <nav class="navbar navbar-fluid-top">
         <div class="navbar-inner">
-          <div class="container">
-            <!-- Be sure to leave the brand out there if you want it shown -->
-            <a class="brand" href="/">ODtion</a>
-            <ul class="nav">
-              <li class="dropdown">
-                <a href="#"
-                      class="dropdown-toggle"
-                      data-toggle="dropdown">
-                      Auditions
-                      <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Link1</a></li>
-                  <li><a href="#">Link2</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#"
-                      class="dropdown-toggle"
-                      data-toggle="dropdown">
-                      Actor
-                      <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Link1</a></li>
-                  <li><a href="#">Link2</a></li>
-                </ul>
-              </li>
-            </ul>
-         
-            <!-- Everything you want hidden at 940px or less, place within here -->
-            <div class="nav-collapse">
-              <!-- .nav, .navbar-search, .navbar-form, etc -->
-            </div>
+          <div class="container-fluid">
+            <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Lab34</a>
+            <div class="container-fluid nav-collapse">
+              <ul class="nav">
+                <li><%= link_to "Link1", "/path1"  %></li>
+                <li><%= link_to "Link2", "/path2"  %></li>
+                <li><%= link_to "Link3", "/path3"  %></li>
+              </ul>
+            </div><!--/.nav-collapse -->
           </div>
         </div>
       </nav>
-    </header>
-    <!--Feature Section -->
-    <aside id="featured" class="body">
-      <article>
-        Feature Section
-        <figure></figure>
-      </article>
-    </aside>
-    
-    <section id="content">
-      <%= yield %>
+    </header>    
+    <section class="container-fluid">
+      <div class="row-fluid">
+        <!--Feature Section -->
+        <aside class="span3">
+        </aside><!--/span-->
+        <!-- Content -->
+        <div class="span6">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+        <aside class="span3">
+        </aside>
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; Company 2012</p>
+      </footer>      
     </section>
-    
-    <footer>
-      Footer
-    </footer>
-  </div>
-</body>
+  </body>
 </html>

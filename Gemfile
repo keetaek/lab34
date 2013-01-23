@@ -17,9 +17,11 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'less-rails'
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
 end
 
 # gemfile
@@ -34,6 +36,7 @@ gem 'fog', '~> 1.3.1'
 gem 'rmagick'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'inherited_resources' #For nested resources
+gem 'bcrypt-ruby'
 gem 'split', require: 'split/dashboard'
 # Use unicorn as the web server
 # gem 'unicorn'
