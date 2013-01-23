@@ -1,32 +1,29 @@
 
 <h2>Sign up</h2>
-<%= form_for @user, :html => { :class => "span6" } do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="row-fluid">
-    <%= f.label :email, :class => "" %>
-    <%= f.email_field :email, :class => "span12", :placeholder => "Your email" %>
+<%= form_for @user, :html => { :class => "span12" } do |f| %>
+
+  <div class="row-fluid controls controls-row">
+    <%= f.label :email %>
+    <%= f.email_field :email, :class => "span6", :placeholder => "Your email" %>
+    <%= error_message_on @user, :email,:html_tag => "span", :css_class => "span6 error-text" %>
   </div>
   <div class="row-fluid controls controls-row">
     <%= f.label "Name" %>
-    <%= f.text_field :firstName, :class => "span6", :placeholder => "First Name" %>
-    <%= f.text_field :lastName, :class => "span6", :placeholder => "Last Name" %>
+    <%= f.text_field :firstName, :class => "span3", :placeholder => "First Name" , :maxlength => MAXIMUM_NUM_CHARACTER_NAME %>
+    <%= f.text_field :lastName, :class => "span3", :placeholder => "Last Name", :maxlength => MAXIMUM_NUM_CHARACTER_NAME %>
+    <%= error_message_on @user, :name,:html_tag => "span", :css_class => "span6 error-text" %>
+
   </div>
-  <div class="row-fluid">
+  <div class="row-fluid controls controls-row">
     <%= f.label :password %>
-    <%= f.password_field :password, :class => "span12" %>
+    <%= f.password_field :password, :class => "span6", :placeholder => "Minimum 6 and maximum 50 chars", :maxlength => MAXIMUM_NUM_PASSWORD %>
+    <%= error_message_on @user, :password,:html_tag => "span", :css_class => "span6 error-text" %>
   </div>
-  <div class="row-fluid">
+  <div class="row-fluid controls controls-row">
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, :class => "span12" %>
+    <%= f.password_field :password_confirmation, :class => "span6" %>
+    <%= error_message_on @user, :password_confirmation,:html_tag => "span", :css_class => "span6 error-text", :maxlength => MAXIMUM_NUM_PASSWORD %>
+
   </div>
-  <div class="actions pull-right"><%= f.submit %></div>
+  <div class="actions span6 pull-right"><%= f.submit %></div>
 <% end %>

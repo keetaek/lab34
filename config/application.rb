@@ -46,6 +46,14 @@ module Lab34
     config.assets.version = '1.0'
     
     config.autoload_paths += %W(#{Rails.root}/lib)
-    
+    # config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+    #     "#{html_tag}".html_safe
+    # }    
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+        "<span class=\"control-group error\">#{html_tag}</span>".html_safe
+    }    
+    #INFO: How to replace DIV tag just on label field: https://gist.github.com/1464315
+
   end
 end

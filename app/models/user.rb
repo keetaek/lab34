@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include ActiveModel::Validations
+
   attr_accessible :email, :password, :password_confirmation, 
   :firstName, :lastName, :thumbnail, :city_list, :user_detail_attributes,
   :pictures_attributes, :videos_attributes, :applications_attributes, :audition_admins;
@@ -13,12 +15,16 @@ class User < ActiveRecord::Base
   has_many :videos, :dependent => :destroy
   mount_uploader :thumbnail, ThumbnailUploader #Thumbnail image
 
+
+  #################VALIDATION TODO: Move this logic to separate class#########
   # From the registration page
-  validates_presence_of :email, :password, :firstName, :lastName, :on => :create, :message => "The field cannot be blank"
-  validates :password, :length => { :minimum => 6, :message => "Minimum 6 characters" }, :confirmation => true, :on => :create
+  validates_presence_of :email, :password, :on => :create, :message => "The field cannot be blank"
+  validates :password, :length => { :minimum => MINIMUM_NUM_PASSWORD, :message => "Minimum #{MINIMUM_NUM_PASSWORD} characters" }, :confirmation => true, :on => :create
   validate :email, :uniqueness => { :case_sensitive => false, :message => "not unique" },
-    :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "Please provide correct email format"},
+    :email => { :message => "Please provide correct email format" },
     :on => :create
+  validates_with UserNameValidator #Validating firstName and lastName
+
 
   #not sure if I want to allow destroy
   accepts_nested_attributes_for :pictures, :allow_destroy => true
@@ -28,6 +34,8 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :cities, :theaters, :movies, :dances, :musics #I know.. that is gramatically wrong
 
   before_create { generate_token(:auth_token) } # Generating auth_token for each user
+  
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
@@ -43,5 +51,8 @@ class User < ActiveRecord::Base
            logger.debug "KEETAEK Column Random:  " + self[column].to_s
     end while User.exists?(column => self[column])
   end
+
+  #Name validator : This is written to consolidate 2 separate error messages for first and last name
+
 
 end

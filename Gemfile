@@ -28,9 +28,8 @@ end
 #http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development
 gem 'pg', :group => :production
 gem 'panda', '1.5.0'
-
+gem 'dynamic_form'
 gem 'jquery-rails'
-
 gem 'carrierwave'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'
