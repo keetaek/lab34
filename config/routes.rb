@@ -1,5 +1,17 @@
 Lab34::Application.routes.draw do
   
+  
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+      # get 'login' => "sessions#new", :as => 'authenticate'
+      # post 'login' => "sessions#create", :as => 'authenticate'
+      # get 'logout' => "sessions#destroy", :as => 'logout'
+    end
+    # scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
+    #   resources :products
+    # end
+  end
+
   resources :users do
     resources :videos
     # resources :pictures, :only => [:index, :create, :destroy]

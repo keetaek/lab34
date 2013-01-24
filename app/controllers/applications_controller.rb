@@ -7,7 +7,6 @@ class ApplicationsController < InheritedResources::Base
   end
   def new 
   	# @application = Application.new
-  	debugger
   	# @application.videos.build
     new! #Original 
   end
