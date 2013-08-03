@@ -29,14 +29,15 @@ end
 gem 'pg', :group => :production
 gem 'panda', '1.5.0'
 gem 'dynamic_form'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
+
 gem 'carrierwave'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'inherited_resources' #For nested resources
-gem 'bcrypt-ruby'
 gem 'split', require: 'split/dashboard'
+gem 'bcrypt-ruby', '~> 3.0.0'
 # Use unicorn as the web server
 # gem 'unicorn'
 

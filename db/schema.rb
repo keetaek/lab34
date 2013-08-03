@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.text     "answer"
     t.integer  "application_id"
     t.integer  "role_question_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "application_reviews", :force => true do |t|
@@ -26,16 +26,16 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.text     "comment"
     t.integer  "application_id"
     t.integer  "audition_admin_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "applications", :force => true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
     t.text     "answers"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "applications_pictures", :id => false, :force => true do |t|
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.integer  "user_id"
     t.integer  "audition_id"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "auditions", :force => true do |t|
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.string   "status"
     t.datetime "deadline_date"
     t.string   "zip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "auditions_users", :id => false, :force => true do |t|
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.string   "title"
     t.boolean  "private"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "media_resource_id"
     t.string   "media_resource_type"
   end
@@ -89,15 +89,15 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.string   "image"
     t.integer  "user_id"
     t.integer  "application_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "role_questions", :force => true do |t|
     t.string   "question"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.integer  "audition_id"
     t.date     "job_start_date"
     t.date     "job_end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.string   "thumbnail"
     t.string   "website1"
     t.string   "website2"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "videos", :force => true do |t|
@@ -166,8 +166,8 @@ ActiveRecord::Schema.define(:version => 20120411005422) do
     t.string   "panda_video_id"
     t.integer  "user_id"
     t.integer  "application_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
 end
