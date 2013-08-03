@@ -1,23 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  title: MyString
-  type: 
-  logo: MyString
-  description: MyText
-  status: MyString
-  expiration_date: 2011-11-05 17:19:24
-  job_start_date: 2011-11-05
-  job_end_date: 2011-11-05
-  zip: MyString
+  title: MissionImpossible
+  audition_type: ACTING
+  logo: S3_filename_missionImpossible.jpg
+  description: This movie is blahblah
+  status: IN_PROGRESS
+  deadline_date: 2013-03-05 12:00:00
+  zip: 98104
 
 two:
-  title: MyString
-  type: 
-  logo: MyString
-  description: MyText
-  status: MyString
-  expiration_date: 2011-11-05 17:19:24
-  job_start_date: 2011-11-05
-  job_end_date: 2011-11-05
-  zip: MyString
+  title: Diehard6
+  audition_type: ACTING
+  logo: S3_filename_DieHard6.jpg
+  description: yippy kay yeah 
+  status: IN_PROGRESS
+  deadline_date: 2013-03-05 12:00:00
+  zip: 98103
