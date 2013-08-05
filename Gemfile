@@ -9,7 +9,6 @@ gem 'rails', '3.2.3'
 group :development, :test do
   gem 'sqlite3'
   gem 'execjs'
-  gem 'therubyracer'
   gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
   gem 'ruby-debug19'
@@ -27,6 +26,7 @@ end
 
 # gemfile
 #http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development
+gem 'therubyracer'
 gem 'pg', :group => :production
 gem 'panda', '1.5.0'
 gem 'dynamic_form'
