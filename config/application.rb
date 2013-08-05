@@ -39,6 +39,8 @@ module Lab34
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # TODO: It should be precompiled for production
+    config.assets.initialize_on_precompile = false
     # Enable the asset pipeline
     config.assets.enabled = true
 
