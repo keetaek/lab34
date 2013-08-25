@@ -10,15 +10,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      #session[:user_id] = user.id
-      if params[:remember_me]
-        logger.debug "KEETAEK Permanent token set " + user.auth_token.to_s
-        cookies.permanent[:auth_token] = user.auth_token
-      else
-        logger.debug "KEETAEK Temporary token set " + user.auth_token.to_s
-        cookies[:auth_token] = user.auth_token
-      end
-      
+      session[:user_id] = user.id
       redirect_to root_url, :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"
@@ -27,8 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    #session[:user_id] = nil
-    cookies.delete(:auth_token)
+    session[:user_id] = nil
     redirect_to root_url, :notice => "Logged out!"
   end
 end

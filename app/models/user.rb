@@ -52,6 +52,11 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  def self.authenticate(email, password)
+    user = User.find_by_email(email)
+    user.authenticate(password) unless user.nil?
+      # Note that we are using email as a username
+  end
   #Name validator : This is written to consolidate 2 separate error messages for first and last name
 
 

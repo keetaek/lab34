@@ -1,9 +1,12 @@
 Lab34::Application.routes.draw do
   
   
+  use_doorkeeper
+
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
       resources :auditions
+      resources :users
     end
   end
     # scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do

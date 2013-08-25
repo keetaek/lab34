@@ -17,8 +17,8 @@
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <% end %>
         <div id="user_nav">
-          <% if current_user %>
-            Logged in as <%= current_user.email %>
+          <% if current_web_user %>
+            Logged in as <%= current_web_user.email %>
             <%= link_to "Log out", logout_path %>
           <% else %>
             <%= link_to "Sign up", sign_up_path %>

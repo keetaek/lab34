@@ -39,6 +39,7 @@ gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'inherited_resources' #For nested resources
 gem 'split', require: 'split/dashboard'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'doorkeeper', '~> 0.6.7'
 # Use unicorn as the web server
 # gem 'unicorn'
 

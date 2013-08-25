@@ -1,9 +1,9 @@
 module Api
   module V1
-    class AuditionsController < ApplicationController
+    class AuditionsController < BaseController
       # TODO: this should be fixed once we introduce OAuth2
-      skip_before_filter :authorize
-
+      # skip_before_filter :authorize
+      doorkeeper_for :all
       respond_to :json
 
       def index
