@@ -5,8 +5,12 @@ Lab34::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
-      resources :auditions
-      resources :users
+      resources :auditions do
+        resources :applications
+      end
+      resources :users do
+        resources :applications
+      end
     end
   end
     # scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
@@ -47,13 +51,14 @@ Lab34::Application.routes.draw do
 
   end
 
-  resources :roles do 
-    resources :applications do
-    end
-  end
+  # resources :roles do 
+  #   resources :applications do
+  #   end
+  # end
 
+  # Temporarilly removing them to simplify the workflow
   resources :auditions do 
-    resources :roles
+  #   resources :roles
   end
 
   resources :videos

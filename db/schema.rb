@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
   end
 
   create_table "applications", :force => true do |t|
-    t.integer  "role_id"
+    t.integer  "audition_id"
     t.integer  "user_id"
     t.text     "answers"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "applications_pictures", :id => false, :force => true do |t|

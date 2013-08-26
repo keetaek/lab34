@@ -2,19 +2,22 @@ class User < ActiveRecord::Base
   include ActiveModel::Validations
 
   attr_accessible :email, :password, :password_confirmation, 
-  :firstName, :lastName, :thumbnail, :city_list, :user_detail_attributes,
-  :pictures_attributes, :videos_attributes, :applications_attributes, :audition_admins;
+  :firstName, :lastName, :thumbnail, :city_list, 
+  :pictures_attributes, :videos_attributes, :applications_attributes;
+  
   has_secure_password
 
   has_and_belongs_to_many :auditions
-  has_one :user_detail
-  has_many :audition_admins
-  has_many :applications
-  #has_many :media, :as => :media_resource #polymophic relationship
+  has_many :applications, through: :auditions
+
+  # This is to add pictures and videos directly to the profile
   has_many :pictures, :dependent => :destroy
   has_many :videos, :dependent => :destroy
   mount_uploader :thumbnail, ThumbnailUploader #Thumbnail image
 
+  # TODO - revive only when necessary. 
+  # has_one :user_detail
+  # has_many :audition_admins
 
   #################VALIDATION TODO: Move this logic to separate class#########
   # From the registration page
@@ -23,10 +26,9 @@ class User < ActiveRecord::Base
   validate :email, :uniqueness => { :case_sensitive => false, :message => "not unique" },
     :email => { :message => "Please provide correct email format" },
     :on => :create
+
   validates_with UserNameValidator #Validating firstName and lastName
 
-
-  #not sure if I want to allow destroy
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   accepts_nested_attributes_for :videos, :allow_destroy => true
 

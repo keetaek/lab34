@@ -26,9 +26,9 @@ class AuditionsController < ApplicationController
   def new
     @audition = Audition.new
     
-    #Throw away code
+    # TODO uncomment the code once we decide to revive role model
     #3.times do
-    role = @audition.roles.build
+    # role = @audition.roles.build
     #end
   
     respond_to do |format|

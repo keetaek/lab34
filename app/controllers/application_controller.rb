@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   # Commenting out as we are introducing base_controller with doorkeeper
     def current_web_user
 
-
       @current_web_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
     helper_method :current_web_user
