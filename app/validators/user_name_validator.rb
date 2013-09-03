@@ -1,6 +1,6 @@
 class UserNameValidator < ActiveModel::Validator
   def validate(record)
-    if record.firstName.empty? || record.lastName.empty?
+    if record.firstName.blank? || record.lastName.blank?
         record.errors[:name] << 'Name cannot be blank'
         return #Always return only one error message
     end

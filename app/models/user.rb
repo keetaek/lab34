@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
 
   #################VALIDATION TODO: Move this logic to separate class#########
   # From the registration page
-  validates_presence_of :email, :password, :on => :create, :message => "The field cannot be blank"
+  validates_presence_of :email, :password, :firstName, :lastName, :on => :create, :message => "The field cannot be blank"
+  validates_uniqueness_of :email, :case_sensitive => false
   validates :password, :length => { :minimum => MINIMUM_NUM_PASSWORD, :message => "Minimum #{MINIMUM_NUM_PASSWORD} characters" }, :confirmation => true, :on => :create
   validate :email, :uniqueness => { :case_sensitive => false, :message => "not unique" },
     :email => { :message => "Please provide correct email format" },
@@ -61,5 +62,14 @@ class User < ActiveRecord::Base
   end
   #Name validator : This is written to consolidate 2 separate error messages for first and last name
 
+   # Exclude password info from json output.
+  def as_json(options={})
+
+    options[:only] ||= [:firstName, :lastName, :email, :thumbnail, :city, :imdbUrl, :facebookId, :linkedInUrl, :twitterId]
+    json = super(options)
+    # Adding Tag list
+    json[:tags] = { :city_list => self.city_list, :theater_list => self.theater_list, :dance_list => self.dance_list, :music_list => self.music_list }
+    return json
+  end
 
 end

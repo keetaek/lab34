@@ -87,6 +87,17 @@ module Api
           format.json { head :ok }
         end
       end
+
+      private
+      def create_link(name, controller, action)
+        debugger
+        json = {
+          name => {
+            :href => url_for(:controller => controller, :action => action)
+          }
+        }
+        return json
+      end
     end
   end
 end

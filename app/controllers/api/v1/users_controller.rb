@@ -12,38 +12,29 @@ module Api
         end
       end
       
-      def edit
-        @user = User.find(params[:id])
-        @city_tags = User.tag_counts_on(:cities)
-        @city_tags ||= Array.new
-      end
-
-
       # GET /users/1
       # GET /users/1.json
       def show
         @user = User.find(params[:id])
-        @city_tags = User.tag_counts_on(:cities)
+        # @city_tags = User.tag_counts_on(:cities) => This is for all available list of cities (in the tag list)
         @city_tags ||= Array.new
         respond_to do |format|
-          format.html # show.html.erb
-          format.json { render json: @user }
+          # BUG - There seems to be bug in rails code where if the first item in the json body is a custom object with as_json method and
+          # second item is generic class like hash, then both need to pass in json hash object by calling as_json
+          response = { :user => @user.as_json, :links => create_link('users', 'users', 'index').as_json }
+          format.json { render :json => response }
         end
-
       end
 
-      def new
-        @user = User.new
-      end
-      
       def create
         @user = User.new(params[:user])
-        if @user.save
-          # This is part of the gem "Split" for AB testing
-          # finished("signup_title")
-          redirect_to login_path, :notice => "Signed up!"
-        else
-          render "new"
+
+        respond_to do |format|
+          if @user.save
+            format.json { render json: @user, status: :created, location: @user }
+          else
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
         end
       end
 
@@ -53,13 +44,21 @@ module Api
         @user = User.find(params[:id])
         respond_to do |format|
           if @user.update_attributes(params[:user])
-            format.html { redirect_to @user, notice: 'User was successfully updated.' }
             format.json { head :ok }
           else
-            format.html { render action: "edit" }
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
         end
+      end
+
+      private
+      def create_link(name, controller, action)
+        link = {
+          name => {
+            :href => url_for(:controller => controller, :action => action)
+          }
+        }
+        return link
       end
     end
   end
