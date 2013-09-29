@@ -16,45 +16,19 @@ module Api
         @audition = Audition.find(params[:id])
 
         respond_to do |format|
-          format.html # show.html.erb
           format.json { render json: @audition }
         end
-      end
-
-      # GET /auditions/new
-      # GET /auditions/new.json
-      def new
-        @audition = Audition.new
-        
-        #Throw away code
-        #3.times do
-        role = @audition.roles.build
-        #end
-      
-        respond_to do |format|
-          format.html # new.html.erb
-          format.json { render json: @audition }
-        end
-      end
-
-      # GET /auditions/1/edit
-      def edit
-        @audition = Audition.find(params[:id])
       end
 
       # POST /auditions
       # POST /auditions.json
       def create
-        debugger
         @audition = Audition.new(params[:audition])
 
         respond_to do |format|
           if @audition.save
-            debugger
-            format.html { redirect_to @audition, notice: 'Audition was successfully created.' }
             format.json { render json: @audition, status: :created, location: @audition }
           else
-            format.html { render action: "new" }
             format.json { render json: @audition.errors, status: :unprocessable_entity }
           end
         end
@@ -67,10 +41,8 @@ module Api
 
         respond_to do |format|
           if @audition.update_attributes(params[:audition])
-            format.html { redirect_to @audition, notice: 'Audition was successfully updated.' }
             format.json { head :ok }
           else
-            format.html { render action: "edit" }
             format.json { render json: @audition.errors, status: :unprocessable_entity }
           end
         end
@@ -88,15 +60,15 @@ module Api
         end
       end
 
+      # TODO - Refactor this code out 
       private
       def create_link(name, controller, action)
-        debugger
-        json = {
+        link = {
           name => {
             :href => url_for(:controller => controller, :action => action)
           }
         }
-        return json
+        return link
       end
     end
   end
