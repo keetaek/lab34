@@ -21,22 +21,23 @@ module Api
         if params.has_key?(:type) && params.has_key?(:id)
           identifier_type = params[:type].downcase
           unless identifier_type == "email" || identifier_type == "id"
-            render :status => :bad_request, :text => "Unsupported identifer type"  
+            render :status => :bad_request, :json => Utilities::create_error_response(400, "Unsupported identifier type")
+            return
           end
         else
-          render :status => :bad_request, :text => "Empty identifer type or identifier"
+          render :status => :bad_request, :json => Utilities::create_error_response(400, "Empty identifer type or identifier")
           return
         end
 
         # Is requested user same as the token info? 
         if identifier_type == "email" 
           if current_user.email != params[:id]
-            render :status => :forbidden, :text => "Forbidden resource"
+            render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden resource")
             return
           end
         elsif identifier_type == "id" 
           if current_user.id.to_s != params[:id]
-            render :status => :forbidden, :text => "Forbidden resource"
+            render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden resource")
             return
           end
         end
