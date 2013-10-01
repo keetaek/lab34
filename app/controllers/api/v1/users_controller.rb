@@ -58,7 +58,8 @@ module Api
 
         respond_to do |format|
           if @user.save
-            format.json { render json: @user, status: :created, location: @user }
+            response = { :user => @user.as_json, :links => create_link('users', 'users', 'index').as_json }
+            format.json { render json: response, status: :created, location: @user }
           else
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
