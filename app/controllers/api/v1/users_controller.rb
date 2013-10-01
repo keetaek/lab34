@@ -79,6 +79,18 @@ module Api
         end
       end
 
+      def me
+        # @city_tags = User.tag_counts_on(:cities) => This is for all available list of cities (in the tag list)
+        @city_tags ||= Array.new
+        respond_to do |format|
+          # BUG - There seems to be bug in rails code where if the first item in the json body is a custom object with as_json method and
+          # second item is generic class like hash, then both need to pass in json hash object by calling as_json
+          # response = { :user => @user.as_json, :links => create_link('users', 'users', 'index').as_json }
+          response = { :user => current_user.as_json, :links => create_link('users', 'users', 'index').as_json }
+          format.json { render :json => response }
+        end
+      end
+
       private
       def create_link(name, controller, action)
         link = {

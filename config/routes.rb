@@ -10,6 +10,7 @@ Lab34::Application.routes.draw do
       end
       # id could have dot for emails. Hence not recognizing email as type
       resources :users, :constraints => { :id => /[^\/]*/ } do
+        get 'me', on: :collection
         resources :auditions
       end
     end
