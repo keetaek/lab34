@@ -32,10 +32,13 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
 
   create_table "applications", :force => true do |t|
     t.integer  "audition_id"
+    t.integer  "role_id"
     t.integer  "user_id"
+    t.string   "video_path"
+    t.string   "picture_path"
     t.text     "answers"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "applications_pictures", :id => false, :force => true do |t|
@@ -127,9 +130,8 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
     t.boolean  "private"
     t.string   "image"
     t.integer  "user_id"
-    t.integer  "application_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "role_questions", :force => true do |t|
@@ -142,7 +144,6 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
   create_table "roles", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "attachment"
     t.integer  "audition_id"
     t.date     "job_start_date"
     t.date     "job_end_date"
@@ -202,11 +203,9 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
     t.string   "title"
     t.text     "description"
     t.boolean  "private"
-    t.string   "panda_video_id"
     t.integer  "user_id"
-    t.integer  "application_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end

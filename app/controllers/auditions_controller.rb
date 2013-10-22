@@ -49,7 +49,6 @@ class AuditionsController < ApplicationController
 
     respond_to do |format|
       if @audition.save
-        debugger
         format.html { redirect_to @audition, notice: 'Audition was successfully created.' }
         format.json { render json: @audition, status: :created, location: @audition }
       else

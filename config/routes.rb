@@ -6,7 +6,9 @@ Lab34::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
       resources :auditions do
-        resources :applications
+        resources :roles do
+          resources :applications
+        end
       end
       # id could have dot for emails. Hence not recognizing email as type
       resources :users, :constraints => { :id => /[^\/]*/ } do
@@ -33,38 +35,29 @@ Lab34::Application.routes.draw do
 
 
   resources :user_details
-
   resources :audition_admins
-
   resources :application_reviews
-
   resources :application_question_answers
-
   resources :role_questions
-
-  resources :media
-
-  resources :application_media
+  # resources :media
+  # resources :application_media
 
   resources :applications do
     resources :videos
     resources :pictures
-    resources :application_question_answers
-
+    # resources :application_question_answers
   end
 
-  # resources :roles do 
-  #   resources :applications do
-  #   end
-  # end
+  resources :roles do 
+    resources :applications do
+    end
+  end
 
-  # Temporarilly removing them to simplify the workflow
   resources :auditions do 
-  #   resources :roles
+    resources :roles
   end
 
-  resources :videos
-  
+  resources :videos  
   resources :pictures
   
   resources :password_resets

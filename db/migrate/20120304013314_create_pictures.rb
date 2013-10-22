@@ -6,7 +6,6 @@ class CreatePictures < ActiveRecord::Migration
       t.boolean :private
       t.string :image
       t.integer :user_id
-      t.integer :application_id
       t.timestamps
     end
   end

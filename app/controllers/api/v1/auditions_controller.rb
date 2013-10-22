@@ -14,10 +14,10 @@ module Api
       # GET /auditions/1.json
       def show
         @audition = Audition.find(params[:id])
-
-        respond_to do |format|
-          format.json { render json: @audition }
-        end
+        respond_with json: @audition
+        # respond_to do |format|
+        #   format.json { render json: @audition }
+        # end
       end
 
       # POST /auditions
@@ -25,13 +25,12 @@ module Api
       def create
         @audition = Audition.new(params[:audition])
 
-        respond_to do |format|
-          if @audition.save
-            format.json { render json: @audition, status: :created, location: @audition }
-          else
-            format.json { render json: @audition.errors, status: :unprocessable_entity }
-          end
+        if @audition.save
+          render json: @audition, status: :created, location: @audition
+        else
+          render json: @audition.errors, status: :unprocessable_entity
         end
+
       end
 
       # PUT /auditions/1
@@ -39,13 +38,12 @@ module Api
       def update
         @audition = Audition.find(params[:id])
 
-        respond_to do |format|
-          if @audition.update_attributes(params[:audition])
-            format.json { head :ok }
-          else
-            format.json { render json: @audition.errors, status: :unprocessable_entity }
-          end
+        if @audition.update_attributes(params[:audition])
+          respond_with head :ok
+        else
+          render json: @audition.errors, status: :unprocessable_entity
         end
+
       end
 
       # DELETE /auditions/1
