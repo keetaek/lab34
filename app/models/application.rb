@@ -2,7 +2,9 @@ class Application < ActiveRecord::Base
   belongs_to :user
   belongs_to :role
   belongs_to :audition
-  attr_accessible :video_path, :picture_path, :answers
+  # why make user_id, role_id, and audition_id open? It is difficult to get all those associations updated. We are now simply inserting it.
+  attr_accessible :video_path, :picture_path, :answers, :user_id, :role_id, :audition_id
+  validates_uniqueness_of :role_id, :scope => [:user_id]
   # attr_accessible :pictures_attributes, :videos_attributes, :application_question_answers_attributes, :answers
   # belongs_to :role
   # Media field has been deprecated

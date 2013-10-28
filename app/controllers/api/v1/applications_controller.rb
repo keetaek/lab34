@@ -3,10 +3,31 @@ module Api
     class ApplicationsController < BaseController
       # TODO: this should be fixed once we introduce OAuth2
       # skip_before_filter :authorize
+      before_filter(:only => [:create, :update]) { |c| c.resource_owner_check(params)}
+
       doorkeeper_for :all
       respond_to :json
 
       def index
+        unless params[:user_id].nil?
+          @user = User.find_by_id(params[:user_id])
+          if @user.nil?
+            render :status => :not_found, :json => Utilities::create_error_response(404, "User #{params[:user_id]} not found")
+            return
+          end
+          respond_with @user.applications
+          return
+        end
+
+        unless params[:audition_id].nil?
+          @audition = Audition.find_by_id(params[:audition_id])
+          if @audition.nil?
+            render :status => :not_found, :json => Utilities::create_error_response(404, "Audition #{params[:audition_id]} not found")
+            return
+          end
+          respond_with @audition.applications
+          return
+        end
         respond_with Application.all
       end
 
@@ -14,44 +35,45 @@ module Api
       # GET /auditions/1.json
       def show
         @application = Application.find(params[:id])
-
-        respond_to do |format|
-          format.html # show.html.erb
-          format.json { render json: @application }
-        end
+        render json: @application
       end
 
       # POST /auditions
       # POST /auditions.json
       def create
-
-        @application = Application.new(params[:application])
-
-        respond_to do |format|
-          if @application.save
-            debugger
-            format.html { redirect_to @application, notice: 'Audition was successfully created.' }
-            format.json { render json: @application, status: :created, location: @application }
-          else
-            format.html { render action: "new" }
-            format.json { render json: @application.errors, status: :unprocessable_entity }
-          end
+        if params[:audition_id].empty? || params[:role_id].empty?
+          render :status => :bad_request, :json => Utilities::create_error_response(400, "Audition and role IDs are required path fields")
+          return
         end
+
+        @role = Role.find_by_id(params[:role_id])
+        if @role.nil?
+          render :status => :not_found, :json => Utilities::create_error_response(404, "Role #{params[:role_id]} not found")
+          return
+        end
+        @application = @role.applications.build(params[:application].merge(:user_id => current_user.id, :audition_id => params[:audition_id]))
+        if @application.save
+          render json: @application, status: :created, location: @application
+        else
+          render :status => :unprocessable_entity, :json => Utilities::create_error_response(422, "You already applied to this role")
+        end
+
       end
 
-      # PUT /auditions/1
-      # PUT /auditions/1.json
+      # PUT /applications/1
+      # PUT /applications/1.json
       def update
         @application = Application.find(params[:id])
+        debugger
+        if current_user.id != @application.user_id
+          render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden Resource")
+          return 
+        end
 
-        respond_to do |format|
-          if @application.update_attributes(params[:application])
-            format.html { redirect_to @application, notice: 'Audition was successfully updated.' }
-            format.json { head :ok }
-          else
-            format.html { render action: "edit" }
-            format.json { render json: @application.errors, status: :unprocessable_entity }
-          end
+        if @application.update_attributes(params[:application])
+          return head :ok
+        else
+          render json: @application.errors, status: :unprocessable_entity
         end
       end
 
@@ -60,11 +82,7 @@ module Api
       def destroy
         @application = Application.find(params[:id])
         @application.destroy
-
-        respond_to do |format|
-          format.html { redirect_to applications_url }
-          format.json { head :ok }
-        end
+        return head :ok
       end
     end
   end

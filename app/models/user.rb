@@ -7,8 +7,10 @@ class User < ActiveRecord::Base
   
   has_secure_password
 
-  has_and_belongs_to_many :auditions
-  has_many :applications, through: :auditions
+  has_many :created_auditions, :foreign_key => 'host_id', :class_name => "Audition"
+  # Uniqueness is enforced in case the applicant applied to more than one role
+  has_many :applied_auditions, :through => :applications, :source => :audition, :uniq => true
+  has_many :applications
 
   # This is to add pictures and videos directly to the profile
   has_many :pictures, :dependent => :destroy

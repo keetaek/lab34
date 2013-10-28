@@ -12,8 +12,8 @@ module Api
 
       # GET /roles/1.json
       def show
-        @role = Role.find(params[:id])
-        respond_with @role
+        @role = Role.find(params[:role])
+        respond_with @roles
       end
 
       # POST /roles
@@ -33,7 +33,7 @@ module Api
         @role = Role.find(params[:id])
 
         if @role.update_attributes(params[:role])
-          respond_with head :ok
+          return head :ok
         else
           render json: @role.errors, status: :unprocessable_entity
         end
@@ -46,8 +46,24 @@ module Api
         @role = Role.find(params[:id])
         @role.destroy
 
-        respond_with head :ok
+        return head :ok
+      end
+    end
 
+    protected
+    def resource_owner_check 
+      # How do I get current role that is requested? 
+      if params[:audition_id]
+        audition = Audition.find(params[:audition_id])
+      else
+      end
+    end
+
+    def collection  
+      if params[:audition_id]
+        Role.find_all_by_audition_id(params[:audition_id])
+      else
+        Role.all
       end
     end
   end

@@ -67,13 +67,9 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
     t.string   "status"
     t.datetime "deadline_date"
     t.string   "zip"
+    t.integer  "host_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-  end
-
-  create_table "auditions_users", :id => false, :force => true do |t|
-    t.integer "audition_id"
-    t.integer "user_id"
   end
 
   create_table "media", :force => true do |t|

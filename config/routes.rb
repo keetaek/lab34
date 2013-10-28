@@ -14,6 +14,13 @@ Lab34::Application.routes.draw do
       resources :users, :constraints => { :id => /[^\/]*/ } do
         get 'me', on: :collection
         resources :auditions
+        resources :applications
+      end
+
+      resources :auditions do 
+        resources :roles do
+          resources :applications
+        end
       end
     end
   end

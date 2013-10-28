@@ -66,8 +66,8 @@ module Api
         end
       end
 
-      # PUT /auditions/1
-      # PUT /auditions/1.json
+      # PUT /users/1
+      # PUT /userss/1.json
       def update
         @user = User.find(params[:id])
         respond_to do |format|
@@ -89,6 +89,12 @@ module Api
           response = { :user => current_user.as_json, :links => create_link('users', 'users', 'index').as_json }
           format.json { render :json => response }
         end
+      end
+
+      def hosting_auditions
+        host = User.find(params[:id])
+        @auditions = host.created_auditions
+        respond_with @auditions
       end
 
       private
