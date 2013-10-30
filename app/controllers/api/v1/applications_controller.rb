@@ -3,8 +3,8 @@ module Api
     class ApplicationsController < BaseController
       # TODO: this should be fixed once we introduce OAuth2
       # skip_before_filter :authorize
-      before_filter(:only => [:create, :update]) { |c| c.resource_owner_check(params)}
-
+      before_filter(:only => [:create, :update]) { |c| c.resource_owner_check(params);c.param_check(params)}
+      
       doorkeeper_for :all
       respond_to :json
 
@@ -41,16 +41,13 @@ module Api
       # POST /auditions
       # POST /auditions.json
       def create
-        if params[:audition_id].empty? || params[:role_id].empty?
-          render :status => :bad_request, :json => Utilities::create_error_response(400, "Audition and role IDs are required path fields")
-          return
-        end
 
         @role = Role.find_by_id(params[:role_id])
         if @role.nil?
           render :status => :not_found, :json => Utilities::create_error_response(404, "Role #{params[:role_id]} not found")
           return
         end
+
         @application = @role.applications.build(params[:application].merge(:user_id => current_user.id, :audition_id => params[:audition_id]))
         if @application.save
           render json: @application, status: :created, location: @application
@@ -64,7 +61,6 @@ module Api
       # PUT /applications/1.json
       def update
         @application = Application.find(params[:id])
-        debugger
         if current_user.id != @application.user_id
           render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden Resource")
           return 
@@ -83,6 +79,14 @@ module Api
         @application = Application.find(params[:id])
         @application.destroy
         return head :ok
+      end
+
+      protected
+      def param_check(params)
+        if params[:audition_id].nil? || params[:role_id].nil?
+          render :status => :bad_request, :json => Utilities::create_error_response(400, "Audition and role IDs are required path fields")
+          return
+        end
       end
     end
   end

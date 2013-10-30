@@ -2,24 +2,27 @@ module Api
   module V1
     class RolesController < BaseController
       # TODO: this should be fixed once we introduce OAuth2
-      # skip_before_filter :authorize
+      before_filter { |c| c.audition_param_check(params) }
+      before_filter(:only => [:update, :create]) {|c| c.audition_host_check(params)}
+      before_filter(:only => [:show, :destroy, :update]) { |c| c.role_param_check(params) }
+      
       doorkeeper_for :all
       respond_to :json
 
       def index
-        respond_with Role.all
+        respond_with @audition.roles
       end
 
       # GET /roles/1.json
       def show
-        @role = Role.find(params[:role])
-        respond_with @roles
+        respond_with @role
       end
 
       # POST /roles
       def create
 
-        @role = Role.new(params[:role])
+        # @role = Role.new(params[:role])
+        @role = @audition.roles.build(params[:role])
 
         if @role.save
           render json: @role, status: :created, location: @role
@@ -30,8 +33,6 @@ module Api
 
       # PUT /roles/1.json
       def update
-        @role = Role.find(params[:id])
-
         if @role.update_attributes(params[:role])
           return head :ok
         else
@@ -43,27 +44,37 @@ module Api
       # DELETE /auditions/1
       # DELETE /auditions/1.json
       def destroy
-        @role = Role.find(params[:id])
         @role.destroy
-
         return head :ok
       end
-    end
 
-    protected
-    def resource_owner_check 
-      # How do I get current role that is requested? 
-      if params[:audition_id]
-        audition = Audition.find(params[:audition_id])
-      else
+      protected
+      def audition_param_check(params)
+        if params[:audition_id].nil?
+          render :status => :bad_request, :json => Utilities::create_error_response(400, "audition_id is required path fields")
+          return
+        end
+        @audition = Audition.find_by_id(params[:audition_id])
+        if @audition.nil?
+          render :status => :not_found, :json => Utilities::create_error_response(404, "audition_id is not found")
+          return
+        end
       end
-    end
 
-    def collection  
-      if params[:audition_id]
-        Role.find_all_by_audition_id(params[:audition_id])
-      else
-        Role.all
+      def audition_host_check(params)
+        # Assuming @audition is already assigned. This maybe bad design as it is tighly coupled with previous filter.
+        if current_user != @audition.host
+          render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden resource")
+          return
+        end
+      end
+
+      def role_param_check(params)
+        @role = @audition.roles.find_by_id(params[:id])
+        if @role.nil?
+          render :status => :not_found, :json => Utilities::create_error_response(404, "role_id is not found")
+          return
+        end
       end
     end
   end
