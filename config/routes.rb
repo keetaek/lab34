@@ -18,9 +18,11 @@ Lab34::Application.routes.draw do
       end
 
       resources :auditions do 
-        resources :roles do
-          resources :applications
-        end
+        resources :applications
+      end
+
+      resources :roles do
+        resources :applications
       end
     end
   end

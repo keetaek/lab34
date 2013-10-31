@@ -4,18 +4,18 @@ module Api
       # TODO: this should be fixed once we introduce OAuth2
       # skip_before_filter :authorize
       before_filter(:only => [:create, :update]) { |c| c.resource_owner_check(params);c.param_check(params)}
-      
+
       doorkeeper_for :all
       respond_to :json
 
       def index
-        unless params[:user_id].nil?
-          @user = User.find_by_id(params[:user_id])
-          if @user.nil?
-            render :status => :not_found, :json => Utilities::create_error_response(404, "User #{params[:user_id]} not found")
+        unless params[:role_id].nil?
+          @role = Role.find_by_id(params[:role_id])
+          if @role.nil?
+            render :status => :not_found, :json => Utilities::create_error_response(404, "Audition #{params[:role_id]} not found")
             return
           end
-          respond_with @user.applications
+          respond_with @role.applications
           return
         end
 
@@ -28,8 +28,21 @@ module Api
           respond_with @audition.applications
           return
         end
+
+        unless params[:user_id].nil?
+          @user = User.find_by_id(params[:user_id])
+          if @user.nil?
+            render :status => :not_found, :json => Utilities::create_error_response(404, "User #{params[:user_id]} not found")
+            return
+          end
+          respond_with @user.applications
+          return
+        end
+        # NOTE: we are not returning all applications. (This will be a security breach). This is only for debugging purpose
         respond_with Application.all
       end
+
+
 
       # GET /auditions/1
       # GET /auditions/1.json
