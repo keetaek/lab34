@@ -29,28 +29,19 @@ module Api
           return
         end
 
-        # Is requested user same as the token info? 
-        if identifier_type == "email" 
-          if current_user.email != params[:id]
-            render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden resource")
-            return
-          end
-        elsif identifier_type == "id" 
-          if current_user.id.to_s != params[:id]
-            render :status => :forbidden, :json => Utilities::create_error_response(403, "Forbidden resource")
-            return
-          end
+        if identifier_type == "email"
+          @user = User.find_by_email(params[:id])
+        else
+          @user = User.find_by_id(params[:id])
+        end
+        
+        if @user.nil?
+          render :status => :not_found, :json => Utilities::create_error_response(404, "Requested ID is not found")
+          return
         end
 
-        # @city_tags = User.tag_counts_on(:cities) => This is for all available list of cities (in the tag list)
-        @city_tags ||= Array.new
-        respond_to do |format|
-          # BUG - There seems to be bug in rails code where if the first item in the json body is a custom object with as_json method and
-          # second item is generic class like hash, then both need to pass in json hash object by calling as_json
-          # response = { :user => @user.as_json, :links => create_link('users', 'users', 'index').as_json }
-          response = { :user => current_user.as_json, :links => create_link('users', 'users', 'index').as_json }
-          format.json { render :json => response }
-        end
+        response = { :user => @user.as_json, :links => create_link('users', 'users', 'index').as_json }
+        respond_with response
       end
 
       def create
