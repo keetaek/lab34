@@ -98,7 +98,6 @@ module Api
       def param_check(params)
         if params[:audition_id].nil? || params[:role_id].nil?
           render :status => :bad_request, :json => Utilities::create_error_response(400, "Audition and role IDs are required path fields")
-          return
         end
       end
     end
