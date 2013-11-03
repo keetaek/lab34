@@ -34,7 +34,8 @@ module Api
         else
           @user = User.find_by_id(params[:id])
         end
-        
+
+        # We are not using RecordNotFound Exception to handle this case.
         if @user.nil?
           render :status => :not_found, :json => Utilities::create_error_response(404, "Requested ID is not found")
           return

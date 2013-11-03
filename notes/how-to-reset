@@ -1,0 +1,7 @@
+heroku pg:reset  SHARED_DATABASE --confirm fasterfaster
+heroku run rake db:migrate
+heroku run console
+Rails.cache.clear
+heroku restart
+- manually add one record to test
+- run performance test
