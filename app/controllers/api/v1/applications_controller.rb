@@ -1,9 +1,8 @@
 module Api
   module V1
     class ApplicationsController < BaseController
-      # TODO: this should be fixed once we introduce OAuth2
       # skip_before_filter :authorize
-      before_filter(:only => [:create, :update]) { |c| c.resource_owner_check(params);c.param_check(params)}
+      before_filter(:only => [:create, :update]) { |c| return if c.resource_owner_check(params) == 403; return if c.param_check(params) == 400}
 
       doorkeeper_for :all
       respond_to :json
@@ -98,6 +97,7 @@ module Api
       def param_check(params)
         if params[:audition_id].nil? || params[:role_id].nil?
           render :status => :bad_request, :json => Utilities::create_error_response(400, "Audition and role IDs are required path fields")
+          return 400
         end
       end
     end
