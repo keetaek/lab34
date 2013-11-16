@@ -54,7 +54,9 @@ module Lab34
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
         "<span class=\"control-group error\">#{html_tag}</span>".html_safe
-    }    
+    }
+
+    AWS.config(access_key_id: 'AKIAJDBLQU3CE5PIKLNA', secret_access_key: 'ElPWe0irVgYZtj483x0nfdk5MQtXggdqYdrAUK2R', region: 'us-west-2')
     #INFO: How to replace DIV tag just on label field: https://gist.github.com/1464315
 
   end

@@ -9,9 +9,11 @@ gem 'rails', '3.2.3'
 group :development, :test do
   gem 'sqlite3'
   gem 'execjs'
-  gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
-  gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
-  gem 'ruby-debug19'
+  # gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
+  # gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
+  gem 'debugger-linecache'
+  gem 'debugger'
+  # gem 'ruby-debug19'
   gem "rails-erd"
 
 end
@@ -42,6 +44,7 @@ gem 'inherited_resources' #For nested resources
 gem 'split', require: 'split/dashboard'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'doorkeeper', '~> 0.6.7'
+gem 'aws-sdk'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -4,7 +4,7 @@ module Api
       # skip_before_filter :authorize
       before_filter(:only => [:create, :update]) { |c| return if c.resource_owner_check(params) == 403; return if c.param_check(params) == 400}
 
-      doorkeeper_for :all
+      doorkeeper_for :all, :except => :aws_sns_message
       respond_to :json
 
       def index
@@ -91,6 +91,10 @@ module Api
         @application = Application.find(params[:id])
         @application.destroy
         return head :ok
+      end
+
+      def aws_sns_message
+        debugger
       end
 
       protected

@@ -26,6 +26,10 @@ Lab34::Application.routes.draw do
       end
     end
   end
+
+  post '/aws-sns/video/complete' => "aws_sns#video_complete"
+
+
     # scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
     #   resources :products
     # end
