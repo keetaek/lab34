@@ -31,7 +31,6 @@ end
 # gemfile
 #http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development
 gem 'therubyracer'
-gem 'pg', :group => :production
 gem 'panda', '1.5.0'
 gem 'dynamic_form'
 gem 'jquery-rails', '~> 2.3.0'
