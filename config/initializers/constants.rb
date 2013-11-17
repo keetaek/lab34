@@ -3,3 +3,5 @@ MINIMUM_NUM_CHARACTER_NAME = 2
 MAXIMUM_NUM_CHARACTER_NAME = 50
 MINIMUM_NUM_PASSWORD = 6
 MAXIMUM_NUM_PASSWORD = 50
+
+AWS_CONFIG = YAML::load_file(File.join(Rails.root, 'config', 'amazon_aws.yml'))

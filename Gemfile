@@ -37,7 +37,9 @@ gem 'therubyracer'
 gem 'panda', '1.5.0'
 gem 'dynamic_form'
 gem 'jquery-rails', '~> 2.3.0'
-
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 gem 'carrierwave'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'

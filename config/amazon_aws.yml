@@ -1,0 +1,23 @@
+production:
+  odtion_video_transcode:
+    pipeline: 1380719709281-k178pg
+    input_bucket: odtion.video.input
+    output_bucket: odtion.video.output
+    output_prefix: WEB_MP4/
+    thumbnail_bucket: odtion.video.thumbnail
+
+development:
+  odtion_video_transcode:
+    pipeline: 1380719709281-k178pg
+    input_bucket: odtion.video.input
+    output_bucket: odtion.video.output
+    output_prefix: WEB_MP4/
+    thumbnail_bucket: odtion.video.thumbnail
+
+test:
+  odtion_video_transcode:
+    pipeline: 1380719709281-k178pg
+    input_bucket: odtion.video.input
+    output_bucket: odtion.video.output
+    output_prefix: WEB_MP4/
+    thumbnail_bucket: odtion.video.thumbnail

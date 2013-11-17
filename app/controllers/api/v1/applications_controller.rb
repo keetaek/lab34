@@ -61,6 +61,8 @@ module Api
         end
 
         @application = @role.applications.build(params[:application].merge(:user_id => current_user.id, :audition_id => params[:audition_id]))
+        #Kick off sidekiq to request transcoding
+
         if @application.save
           render json: @application, status: :created, location: @application
         else

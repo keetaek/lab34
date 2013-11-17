@@ -1,0 +1,1 @@
+AWS.config(access_key_id: 'AKIAJDBLQU3CE5PIKLNA', secret_access_key: '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', region: 'us-west-2')

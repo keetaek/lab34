@@ -1,8 +1,9 @@
-Lab34::Application.routes.draw do
-  
-  
-  use_doorkeeper
+require 'sidekiq/web'
 
+Lab34::Application.routes.draw do  
+  use_doorkeeper
+  mount Sidekiq::Web, at: '/sidekiq'
+  
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1) do
       resources :auditions do
@@ -28,7 +29,7 @@ Lab34::Application.routes.draw do
   end
 
   post '/aws-sns/video/complete' => "aws_sns#video_complete"
-
+  post '/aws-sns/video/test' => "aws_sns#test"
 
     # scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
     #   resources :products
