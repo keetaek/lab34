@@ -29,6 +29,7 @@ class AwsSnsController < ApplicationController
   private 
   def process_video_complete_message(sns_message)
     message = JSON.parse sns_message if !sns_message.nil?
+    logger.info "message \n #{message}"
     status = message["state"]
     if status == "COMPLETED"
       output_prefix = message["outputKeyPrefix"]
