@@ -50,7 +50,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'doorkeeper', '~> 0.6.7'
 gem 'aws-sdk'
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
