@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  user_id: 1
-  audition_id: 1
+one: {}
 
-two:
-  user_id: 1
-  audition_id: 1
+two: {}

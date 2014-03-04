@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MissionImpossible
+inception:
+  title: Inception
   audition_type: ACTING
-  logo: S3_filename_missionImpossible.jpg
-  description: This movie is blahblah
+  logo: http://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg
+  description: A skilled extractor is offered a chance to regain his old life as payment for a task considered to be impossible.
   status: IN_PROGRESS
-  deadline_date: 2013-03-05 12:00:00
-  zip: 98104
+  deadline_date: 2014-12-05 12:00:00
+  zip: 98103
 
-two:
-  title: Diehard6
+american_hustle:
+  title: American Hustle
   audition_type: ACTING
-  logo: S3_filename_DieHard6.jpg
-  description: yippy kay yeah 
+  logo: http://ia.media-imdb.com/images/M/MV5BNjkxMTc0MDc4N15BMl5BanBnXkFtZTgwODUyNTI1MDE@._V1_SX214_.jpg
+  description: A con man, Irving Rosenfeld, along with his seductive partner Sydney Prosser, is forced to work for a wild FBI agent, Richie DiMaso, who pushes them into a world of Jersey powerbrokers and mafia.
   status: IN_PROGRESS
-  deadline_date: 2013-03-05 12:00:00
+  deadline_date: 2014-06-05 12:00:00
   zip: 98103

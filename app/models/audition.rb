@@ -15,8 +15,9 @@ class Audition < ActiveRecord::Base
   # TODO: Uncomment the below items after initial prototype
   accepts_nested_attributes_for :roles, :reject_if => lambda { |a| a[:title].blank? && a[:description].blank? }, :allow_destroy => true
   # accepts_nested_attributes_for :audition_admins, :reject_if => lambda { |a| a[:email].blank? }, :allow_destroy => true
-  mount_uploader :logo, ImageUploader
+  # mount_uploader :logo, ImageUploader
+  # TODO : Probably need to remove application from getting pulled in every time.
   def as_json(options={})
-    super(:include => :roles)
+    super(:include => {:roles => {:include => :applications}})
   end
 end

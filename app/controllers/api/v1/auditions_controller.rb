@@ -26,7 +26,8 @@ module Api
       # GET /auditions/1
       # GET /auditions/1.json
       def show
-        @audition = Audition.find(params[:id])
+        # @audition = Audition.find(params[:id])
+        @audition = Audition.includes(roles: :applications).find(params[:id])
         respond_with @audition
       end
 

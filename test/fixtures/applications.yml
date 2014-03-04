@@ -4,8 +4,50 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+jesus_role_cobb:
+    audition: inception
+    role: cobb
+    user: jesus
+    video_path: https://s3.amazonaws.com/odtion.video.input/VID_20131015_214809.mp4
+    picture_path: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_oQ8Yci2iN7kJKFDoPlJQivgNiSdm9JKO-mwJbDaYYfhIHVwk
+    answers: Who can be better fit than Jesus on Cobb? 
+
+keetaek_role_cobb:
+    audition: inception
+    role: cobb
+    user: keetaek
+    video_path: https://s3.amazonaws.com/odtion.video.input/VID_20131015_214809.mp4
+    picture_path: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuMsPftiilgRgCmSjV4hpQ9t8OdZjY4G14Q2rU9Ov2wGCsFV5ZGg
+    answers: I will be a perfect fit for Cobb
+
+rohit_role_ariadne:
+    audition: inception
+    role: ariadne
+    user: rohit
+    video_path: https://s3.amazonaws.com/odtion.video.input/VID_20131015_214809.mp4
+    picture_path: http://www.vpwallpapers.com/wp-content/uploads/2013/11/Scarlett-Johansson.jpg
+    answers: I got boobs for the job
+
+jesus_role_irving:
+    audition: american_hustle
+    role: irving
+    user: jesus
+    video_path:
+    picture_path: http://www.eonline.com/eol_images/Entire_Site/2013816/rs_634x1024-130916143306-634.Brad-Pitt-Short-Hair-Fury-London.ms.091613.jpg
+    answers: I am so passionate about this Irving role. Pick me Pick me!
+
+keetaek_role_richie:
+    audition: american_hustle
+    role: richie
+    user: keetaek
+    video_path:
+    picture_path: http://www.ryanseacrest.com/wp-content/uploads/2012/07/Joseph-Gordon-Levitt-GQ-2012-Cover-900-600.jpg
+    answers: Look at that face... it's completely success driven face.
+
+rohit_role_sydney:
+    audition: american_hustle
+    role: sydney
+    user: rohit
+    video_path:
+    picture_path: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAAn4_RMnsS3rRggIUUAhgyShRDohx_L-_pKvZbz1AvUikbZ2Z
+    answers: Side boobs. I got them.

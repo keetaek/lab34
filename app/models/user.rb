@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
    # Exclude password info from json output.
   def as_json(options={})
 
-    options[:only] ||= [:firstName, :lastName, :email, :thumbnail, :city, :imdbUrl, :facebookId, :linkedInUrl, :twitterId]
+    options[:only] ||= [:id, :firstName, :lastName, :email, :thumbnail, :city, :imdbUrl, :facebookId, :linkedInUrl, :twitterId]
     json = super(options)
     # Adding Tag list
     json[:tags] = { :city_list => self.city_list, :theater_list => self.theater_list, :dance_list => self.dance_list, :music_list => self.music_list }

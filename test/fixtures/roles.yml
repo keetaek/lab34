@@ -1,11 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
-  description: MyText
-  attachment: MyString
+cobb:
+  title: cobb
+  description: Cobb is an extractor - he enters people's dreams, steals their secrets
+  audition: inception
+  job_start_date: 2015-01-05 12:00:00
+  job_end_date: 2015-04-30 12:00:00
 
-two:
-  title: MyString
-  description: MyText
-  attachment: MyString
+arthur:
+  title: arthur
+  description: Arthur is Cobb's right hand man, and apparently closest friend
+  audition: inception
+  job_start_date: 2015-01-05 12:00:00
+  job_end_date: 2015-04-30 12:00:00
+
+ariadne:
+  title: Ariadne
+  description: Ariadne is a student of architecture in France. She meets Cobb through one of her teachers
+  audition: inception
+  job_start_date: 2015-01-05 12:00:00
+  job_end_date: 2015-04-30 12:00:00
+
+irving:
+  title: irving
+  description: Small time con man 
+  audition: american_hustle
+  job_start_date: 2015-03-05 12:00:00
+  job_end_date: 2015-06-30 12:00:00
+
+richie:
+  title: richie
+  description: FBI agent hungry for success, fame and promotion
+  audition: american_hustle
+  job_start_date: 2015-03-05 12:00:00
+  job_end_date: 2015-07-30 12:00:00
+
+sydney:
+  title: sydney
+  description: Lady with side boobs. 
+  audition: american_hustle
+  job_start_date: 2015-02-05 12:00:00
+  job_end_date: 2015-08-30 12:00:00  

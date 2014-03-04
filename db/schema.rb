@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
   end
 
   create_table "auditions", :force => true do |t|
+    t.integer  "host_id"
     t.string   "title"
     t.string   "audition_type"
     t.string   "logo"
@@ -67,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20130816024033) do
     t.string   "status"
     t.datetime "deadline_date"
     t.string   "zip"
-    t.integer  "host_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

@@ -1,13 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  email: john@test.com
-  password_digest: <%= BCrypt::Password.create("test") %>
-  firstName: john
-  lastName: test
+jesus:
+  email: jesus@gmail.com
+  password_digest: <%= BCrypt::Password.create("password") %>
+  firstName: jesus
+  lastName: garcia
+  thumbnail: http://www.biography.com/imported/images/Biography/Images/Profiles/P/Brad-Pitt-9441989-2-402.jpg
 
-two:
-  email: Matt@test.com
-  password_digest: <%= BCrypt::Password.create("test") %>
-  firstName: Matt
-  lastName: Stalion
+keetaek:
+  email: keetaek@gmail.com
+  password_digest: <%= BCrypt::Password.create("password") %>
+  firstName: Keetaek
+  lastName: Hong
+  thumbnail: http://www.ryanseacrest.com/wp-content/uploads/2012/07/Joseph-Gordon-Levitt-GQ-2012-Cover-900-600.jpg
+
+rohit:
+  email: rohit@gmail.com
+  password_digest: <%= BCrypt::Password.create("password") %>
+  firstName: Rohit
+  lastName: Chopra
+  thumbnail: http://www.vpwallpapers.com/wp-content/uploads/2013/11/Scarlett-Johansson.jpg
