@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   # This is to add pictures and videos directly to the profile
   has_many :pictures, :dependent => :destroy
   has_many :videos, :dependent => :destroy
-  mount_uploader :thumbnail, ThumbnailUploader #Thumbnail image
+  
+  # mount_uploader :thumbnail, ThumbnailUploader #Thumbnail image
 
   # TODO - revive only when necessary. 
   # has_one :user_detail
